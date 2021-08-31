@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import {UserContext, UserProvider} from '../../services/FetchDataService';
 
 export const UserProfile= () => {
@@ -8,24 +8,26 @@ export const UserProfile= () => {
         super(props);
         
     }
+    componentDidMount() { } */
 
-    componentDidMount() {
-
-
-    } */
+    // userEffect(() => {}, {})
 
 
     /* render(){ */
         const localData = useContext(UserContext);
+        const {loading} = useState({loading: true});
+
         console.log('==>',localData)
         return (
+            localData.data? 
             <Fragment>
-                <div style={{height:'500px', backgroundColor:'red'}}>{Object.keys(localData.data).map(i => (
-                    <p key={i}>{i}</p>
+                <div style={{height:'500px', backgroundColor:'red'}}>{Object.entries(localData.data.userInfos).map((value, key) => (
+                    <p key={Math.random()}>{value}</p>
                 )) }
 
                 </div>
             </Fragment>
+            : 'loading'
         )
     }
 
