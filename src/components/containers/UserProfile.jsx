@@ -1,33 +1,88 @@
 import React, { Fragment, useContext, useState } from 'react';
 import FetchDataService from '../../services/FetchDataService';
-
+import {UserKeyDataModel, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
 FetchDataService.fetchData();
 
 
-let local = [];
-const myStorage = window.localStorage;
+export default class UserProfile extends React.Component { 
 
+        constructor(props){
+            super(props);
 
-local =  myStorage.getItem('allData');
-// console.log('LOCAL==', local)
-let jjj = myStorage.getItem('userMainData');
-console.log('PARSED++', JSON.parse(jjj))
+            this.storage = window.localStorage;
+            this.userMainData = JSON.parse(this.storage.getItem('userMainData'));
+            this.userActivityData = JSON.parse(this.storage.getItem('userActivityData'));
+            this.userSessionLengthData = JSON.parse(this.storage.getItem('userSessionsLength'));
+            this.userPerfData = JSON.parse(this.storage.getItem('userPerfData'));
 
-export const UserProfile = () => { 
-    
+            this.state = {
+                userId: null,
+                userFirstName: '',
+                userLastName: '',
+                userAge: null,
+                userScore: null,
 
+                userKeyData: new UserKeyDataModel({calorieCount:null, proteinCount:null, carbohydrateCount:null, lipidCount:null}),
 
-        return (
+                userActivitySessions:[],
+                userActSession: new ActivitySessionModel(),
+
+                userLengthSessions: [],
+                userLengthSession: new SessionLengthModel({day:null, sessionLength:null}),
+                
+                userPerformances: [],
+                userPerformance: new PerformanceModel({value: null, kind: ''})
+
+                };
+            }
+            componentDidMount() {
+                
+                this.setState({
+                    
+                    userId:this.userMainData.data.id,
+
+                    userFirstName: this.userMainData.data.userInfos.firstName,
+                    userLastName: this.userMainData.data.userInfos.lastName,
+                    userAge: this.userMainData.data.userInfos.age,
+                    userScore: this.userMainData.data.score ||  this.userMainData.data.todayScore,
+
+                    userKeyData: Object.entries(this.userMainData.data.keyData), // is an object,
+                    
+                    userActivitySessions: this.userActivityData.data.sessions.map(session =>  // is an array of objects
+                        new ActivitySessionModel(session.day, session.kilogram, session.calories)
+                    ),
+
+                    userLengthSessions: this.userSessionLengthData.data.sessions.map(session => 
+                        new SessionLengthModel(session.day, session.sessionLength)
+                    ),
+
+                    userPerformances: this.userPerfData.data.data.map(perf =>
+                        new PerformanceModel(perf.value, perf.kind)
+                    )
+
+                })
+            }
+            render() {
+                console.log(
+                    this.state.userId,
+                    this.state.userFirstName,
+                    this.state.userKeyData,
+                    this.state.userActivitySessions,
+                    this.state.userLengthSessions,
+                    this.state.userPerformances
+                    );
+                
+                    return (
+                        
+                        <Fragment>
+                            <div style={{height:'500px', backgroundColor:'grey'}}>
+
+                            </div>
+                        </Fragment>
             
-            <Fragment>
-                <div style={{height:'500px', backgroundColor:'grey'}}><p></p>
-
-                </div>
-            </Fragment>
-
-        )
-    }
+                    )
+            }
+        }
 
 
-export default UserProfile
 

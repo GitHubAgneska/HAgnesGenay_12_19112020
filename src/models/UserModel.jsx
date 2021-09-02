@@ -1,5 +1,5 @@
 export class UserModel {
-    constructor(id, firstName, lastName, age, score, keyData, activityData, performanceData, sessionsData){
+    constructor(id, firstName, lastName, age, score){
         this.id = id;
         
         this.firstName = firstName;
@@ -7,10 +7,10 @@ export class UserModel {
         this.age = age;
         this.score = score;
 
-        this.keyData = keyData;
-        this.activityData = activityData;
-        this.performanceData = performanceData;
-        this.sessionsData = sessionsData;
+        this.keyData = UserKeyDataModel;
+        this.activitySessions = [];
+        this.performances = [];
+        this.sessions = [];
     }
 
     get introSentence(){
@@ -29,13 +29,7 @@ export class UserKeyDataModel {
     }
 }
 
-export class UserActivityModel {
-    constructor(sessions) {
-        this.sessions = sessions;
-    }
-}
-
-export class SessionModel {
+export class ActivitySessionModel {
     constructor(day, kilogram, calories) {
         this.day = day;
         this.kilogram = kilogram;
@@ -43,16 +37,17 @@ export class SessionModel {
     }
 }
 
-export class PerformanceData {
-    constructor(performances) {
-        this.performances = performances;
+export class SessionLengthModel {
+    constructor(day, sessionLength) {
+        this.day = day;
+        this.sessionLength = sessionLength;
     }
 }
 
-export class Performance {
+export class PerformanceModel {
     constructor(value, kind){
         this.value = value;
-        this.kind = kind;
+        this.kind = (kind) => { Object.keys(PerformanceKind).find( kind => { return PerformanceKind[kind] })};
     }
 }
 
@@ -65,16 +60,4 @@ export const PerformanceKind = {
     6: 'intensity'
 }
 
-export class SessionsData {
-    constructor(sessions) {
-        this.sessions = sessions;
-    }
-}
-
-export class Session {
-    constructor(day, sessionLength) {
-        this.day = day;
-        this.sessionLength = sessionLength;
-    }
-}
 

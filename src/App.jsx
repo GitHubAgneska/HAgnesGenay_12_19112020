@@ -13,7 +13,6 @@ const App = () => {
             <div className="container" style={{height:'100%', width:'100%'}}>
                 
                     <UserProfile />
-               
 
             </div>
         </div>
