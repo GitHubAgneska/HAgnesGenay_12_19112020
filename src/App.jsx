@@ -11,9 +11,9 @@ const App = () => {
     return (
         <div className="App">
             <div className="container" style={{height:'100%', width:'100%'}}>
-                <UserProvider>
+                
                     <UserProfile />
-                </UserProvider>
+               
 
             </div>
         </div>
