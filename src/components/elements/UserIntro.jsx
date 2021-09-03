@@ -1,11 +1,19 @@
 import PropTypes from "prop-types"
 import { Fragment } from "react"
+import styled from "styled-components"
 
+const Wrapper = styled.section`
+    padding: 4em;
+    border: 2px solid grey;
+`;
 const UserIntro = ({userFirstName}) => {
 
     return(
         <Fragment>
-            <p className="userFirstName">Bonjour {userFirstName}</p>
+            <Wrapper>
+                <h1 className="userFirstName">Bonjour {userFirstName}</h1>
+                <p>placeholder</p>
+            </Wrapper>
         </Fragment>
     )
 }

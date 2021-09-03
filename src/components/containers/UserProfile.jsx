@@ -7,6 +7,13 @@ import UserSessionsLength from '../elements/UserSessionsLength';
 import UserPerformances from '../elements/UserPerformances';
 import UserScore from '../elements/UserScore';
 
+import styled from "styled-components"
+
+const Wrapper = styled.section`
+    padding: 4em;
+    border: 2px solid grey;
+`;
+
 // import FetchDataService from '../../services/FetchDataService';
 // FetchDataService.fetchData();
 
@@ -82,18 +89,16 @@ export default class UserProfile extends React.Component {
                 
                     const {userFirstName, userScore, userKeyData, userActivitySessions, userLengthSessions, userPerformances} = this.state;
                     return (
-
                         
                         <Fragment>
-                            <div style={{height:'500px'}}>
-
+                            <Wrapper>
                                 <UserIntro {...{userFirstName}} />
                                 <UserKeyData {...{userKeyData}} />
                                 <UserActivity {...{userActivitySessions}} />
                                 <UserSessionsLength {...{userLengthSessions}} />
                                 <UserPerformances {...{userPerformances}} />
                                 <UserScore {...{userScore}} />
-                            </div>
+                            </Wrapper>
                         </Fragment>
             
                     )
