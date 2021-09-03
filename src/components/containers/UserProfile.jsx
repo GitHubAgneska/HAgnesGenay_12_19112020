@@ -80,6 +80,7 @@ export default class UserProfile extends React.Component {
             render() {
                 console.log(
                     this.state.userId,
+                    this.state.userScore,
                     this.state.userFirstName,
                     this.state.userKeyData,
                     this.state.userActivitySessions,
@@ -89,7 +90,7 @@ export default class UserProfile extends React.Component {
                 
                     const {userFirstName, userScore, userKeyData, userActivitySessions, userLengthSessions, userPerformances} = this.state;
                     return (
-                        
+
                         <Fragment>
                             <Wrapper>
                                 <UserIntro {...{userFirstName}} />
