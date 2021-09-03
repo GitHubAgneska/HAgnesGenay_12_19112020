@@ -11,9 +11,10 @@ export class UserModel {
         this.activitySessions = [];
         this.performances = [];
         this.sessions = [];
+        this.introSentence = this.makeIntroSentence();
     }
 
-    get introSentence(){
+    makeIntroSentence(){
         // depending on -?-- : return either..
         return 'Félicitations, ..'
     }

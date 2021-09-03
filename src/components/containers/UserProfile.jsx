@@ -1,9 +1,14 @@
 import React, { Fragment } from 'react';
 import {UserKeyDataModel, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
+import UserIntro from '../elements/UserIntro';
+import UserActivity from '../elements/UserActivity';
+import UserKeyData from '../elements/UserKeyData';
+import UserSessionsLength from '../elements/UserSessionsLength';
+import UserPerformances from '../elements/UserPerformances';
+import UserScore from '../elements/UserScore';
 
 // import FetchDataService from '../../services/FetchDataService';
 // FetchDataService.fetchData();
-
 
 export default class UserProfile extends React.Component { 
 
@@ -75,11 +80,19 @@ export default class UserProfile extends React.Component {
                     this.state.userPerformances
                     );
                 
+                    const {userFirstName, userScore, userKeyData, userActivitySessions, userLengthSessions, userPerformances} = this.state;
                     return (
+
                         
                         <Fragment>
                             <div style={{height:'500px', backgroundColor:'grey'}}>
 
+                                <UserIntro {...{userFirstName}} />
+                                <UserKeyData {...{userKeyData}} />
+                                <UserActivity {...{userActivitySessions}} />
+                                <UserSessionsLength {...{userLengthSessions}} />
+                                <UserPerformances {...{userPerformances}} />
+                                <UserScore {...{userScore}} />
                             </div>
                         </Fragment>
             
