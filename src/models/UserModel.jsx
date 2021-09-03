@@ -17,7 +17,6 @@ export class UserModel {
         // depending on -?-- : return either..
         return 'Félicitations, ..'
     }
-
 }
 
 export class UserKeyDataModel {
@@ -47,7 +46,7 @@ export class SessionLengthModel {
 export class PerformanceModel {
     constructor(value, kind){
         this.value = value;
-        this.kind = (kind) => { Object.keys(PerformanceKind).find( kind => { return PerformanceKind[kind] })};
+        this.kind = PerformanceKind[kind];
     }
 }
 

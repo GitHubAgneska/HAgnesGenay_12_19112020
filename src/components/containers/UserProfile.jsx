@@ -1,7 +1,8 @@
-import React, { Fragment, useContext, useState } from 'react';
-import FetchDataService from '../../services/FetchDataService';
+import React, { Fragment } from 'react';
 import {UserKeyDataModel, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
-FetchDataService.fetchData();
+
+// import FetchDataService from '../../services/FetchDataService';
+// FetchDataService.fetchData();
 
 
 export default class UserProfile extends React.Component { 
@@ -35,6 +36,7 @@ export default class UserProfile extends React.Component {
 
                 };
             }
+
             componentDidMount() {
                 
                 this.setState({
@@ -62,6 +64,7 @@ export default class UserProfile extends React.Component {
 
                 })
             }
+
             render() {
                 console.log(
                     this.state.userId,
@@ -82,7 +85,7 @@ export default class UserProfile extends React.Component {
             
                     )
             }
-        }
+}
 
 
 
