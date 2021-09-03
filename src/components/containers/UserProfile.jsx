@@ -85,7 +85,7 @@ export default class UserProfile extends React.Component {
 
                         
                         <Fragment>
-                            <div style={{height:'500px', backgroundColor:'grey'}}>
+                            <div style={{height:'500px'}}>
 
                                 <UserIntro {...{userFirstName}} />
                                 <UserKeyData {...{userKeyData}} />
