@@ -42,13 +42,14 @@ export class ActivitySessionModel {
         this.calories = calories
     }
 }
-
 export class SessionLengthModel {
     constructor(day, sessionLength) {
-        this.day = day;
+        this.day = daysOfTheWeek[day-1];
         this.sessionLength = sessionLength;
     }
 }
+const daysOfTheWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+
 
 export class PerformanceModel {
     constructor(value, kind){

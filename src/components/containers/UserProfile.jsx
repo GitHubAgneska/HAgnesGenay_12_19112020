@@ -3,9 +3,9 @@ import {UserKeyDataModel, UserKeyDataItemType, ActivitySessionModel, Performance
 import UserIntro from '../elements/UserIntro';
 import UserActivity from '../elements/UserActivity';
 import UserKeyData from '../elements/UserKeyData';
-import UserSessionsLength from '../elements/UserSessionsLength';
 import UserPerformances from '../elements/UserPerformances';
 import UserScore from '../elements/UserScore';
+import UserSessionsLength from '../elements/UserSessionsLength';
 
 
 import styled from "styled-components"
@@ -100,9 +100,9 @@ export default class UserProfile extends React.Component {
                                 <UserIntro {...{userFirstName}} />
                                 <UserKeyData {...{userKeyData}} />
                                 <UserActivity {...{userActivitySessions}} />
-                                <UserSessionsLength {...{userLengthSessions}} />
                                 <UserScore {...{userScore}} />
                                 <UserPerformances {...{userPerformances}} />
+                                <UserSessionsLength {...{userLengthSessions}} />
 
                             </Wrapper>
                         </Fragment>
