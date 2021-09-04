@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
-import {UserKeyDataModel, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
+import React, { Fragment, Suspense } from 'react';
+import {UserKeyDataModel, UserKeyDataItemType, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
 import UserIntro from '../elements/UserIntro';
 import UserActivity from '../elements/UserActivity';
 import UserKeyData from '../elements/UserKeyData';
 import UserSessionsLength from '../elements/UserSessionsLength';
 import UserPerformances from '../elements/UserPerformances';
 import UserScore from '../elements/UserScore';
+
 
 import styled from "styled-components"
 
@@ -35,7 +36,8 @@ export default class UserProfile extends React.Component {
                 userAge: null,
                 userScore: null,
 
-                userKeyData: new UserKeyDataModel({calorieCount:null, proteinCount:null, carbohydrateCount:null, lipidCount:null}),
+                
+                userKeyData: [],
 
                 userActivitySessions:[],
                 userActSession: new ActivitySessionModel(),
@@ -60,7 +62,9 @@ export default class UserProfile extends React.Component {
                     userAge: this.userMainData.data.userInfos.age,
                     userScore: this.userMainData.data.score ||  this.userMainData.data.todayScore,
 
-                    userKeyData: Object.entries(this.userMainData.data.keyData), // is an object,
+                    userKeyData: Array.from(Object.entries(this.userMainData.data.keyData)).map((key, value) => (
+                        new UserKeyDataItemType(key, value)
+                    )),
                     
                     userActivitySessions: this.userActivityData.data.sessions.map(session =>  // is an array of objects
                         new ActivitySessionModel(session.day, session.kilogram, session.calories)
@@ -73,7 +77,6 @@ export default class UserProfile extends React.Component {
                     userPerformances: this.userPerfData.data.data.map(perf =>
                         new PerformanceModel(perf.value, perf.kind)
                     )
-
                 })
             }
 
@@ -93,15 +96,17 @@ export default class UserProfile extends React.Component {
 
                         <Fragment>
                             <Wrapper>
+                                                
                                 <UserIntro {...{userFirstName}} />
                                 <UserKeyData {...{userKeyData}} />
                                 <UserActivity {...{userActivitySessions}} />
                                 <UserSessionsLength {...{userLengthSessions}} />
-                                <UserPerformances {...{userPerformances}} />
                                 <UserScore {...{userScore}} />
+                                <UserPerformances {...{userPerformances}} />
+
                             </Wrapper>
                         </Fragment>
-            
+
                     )
             }
 }

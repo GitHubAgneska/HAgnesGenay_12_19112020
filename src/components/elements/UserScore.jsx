@@ -1,12 +1,6 @@
 import PropTypes from "prop-types"
 import {Fragment} from "react"
-import {
-    PieChart,
-    Pie,
-    Sector,
-    Cell,
-    ResponsiveContainer
-} from 'recharts';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
 import styled from "styled-components"
 
@@ -17,8 +11,10 @@ const Wrapper = styled.section `
 
 
 const UserScore = ({userScore}) => {
+    // console.log('score==',userScore )
 
-    const data = [ { name: 'Score', value: userScore } ];
+
+    const data = [ { name: 'Score', value: userScore*100 } ];
     const COLOR = '#0088FE';
     const RADIAN = Math.PI / 180;
     
@@ -30,16 +26,17 @@ const UserScore = ({userScore}) => {
 
         return (
             <text x={x} y={y} fill="grey" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${(percent * 100).toFixed(0)}%`}
+            { userScore*100}%<span>de votre objectif</span>
+           {/*  {`${(percent * 100).toFixed(0)}%`}<span>de votre objectif</span> */}
             </text>
         );
     };
 
     return (
+        
         <Fragment>
             <ResponsiveContainer>
                 <Wrapper>
-
                     <PieChart width={800} height={400} >
                         <Pie data={data}
                             label={renderCustomizedLabel}
@@ -64,6 +61,7 @@ const UserScore = ({userScore}) => {
     )
 } 
 UserScore.propTypes = {
-    userScore: PropTypes.number.isRequired
+    userScore: PropTypes.number
 }
+
 export default UserScore

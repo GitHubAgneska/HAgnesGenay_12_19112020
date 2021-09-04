@@ -19,6 +19,7 @@ const UserIntro = ({userFirstName}) => {
 }
 
 UserIntro.propTypes = {
-    firstName: PropTypes.string.isRequired
+    firstName: PropTypes.string
+    /* firstName: PropTypes.string.isRequired  => ! incompatible w/ fetch load time .. */
 }
 export default UserIntro

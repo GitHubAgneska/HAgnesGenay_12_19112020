@@ -28,6 +28,12 @@ export class UserKeyDataModel {
         this.lipidCount = lipidCount;
     }
 }
+export class UserKeyDataItemType {
+    constructor(KeyDataName, KeyDataValue) {
+        this.KeyDataName = KeyDataName;
+        this.KeyDataValue = KeyDataValue;
+    }
+}
 
 export class ActivitySessionModel {
     constructor(day, kilogram, calories) {
