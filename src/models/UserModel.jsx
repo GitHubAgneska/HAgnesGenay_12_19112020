@@ -6,19 +6,32 @@ export class UserModel {
         this.lastName = lastName;
         this.age = age;
         this.score = score;
+        this.introSentence = makeIntroSentence(this.score);
 
         this.keyData = UserKeyDataModel;
         this.activitySessions = [];
         this.performances = [];
         this.sessions = [];
-        this.introSentence = this.makeIntroSentence();
     }
 
-    makeIntroSentence(){
-        // depending on -?-- : return either..
-        return 'Félicitations, ..'
-    }
 }
+export function makeIntroSentence(score) {
+    
+    let sentence = '';
+    return score * 100 < 50 ? sentence=introSentences[2]
+            : score* 100 === 50? sentence=introSentences[1]
+            : score* 100 > 50? sentence = introSentences[0]
+            : sentence
+}
+
+
+var emoji = String.fromCodePoint(0x1F621)
+
+const introSentences = [
+    'Félicitations, vous avez explosé vos objectifs hier' + emoji ,
+    'Vous êtes sur la bonne voie '+ emoji ,
+    'Ne vous découragez pas '+ emoji 
+]
 
 export class UserKeyDataModel {
     constructor(calorieCount,proteinCount,carbohydrateCount,lipidCount){

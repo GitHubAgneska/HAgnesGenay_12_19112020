@@ -1,5 +1,5 @@
 import React, { Fragment, Suspense } from 'react';
-import {UserKeyDataModel, UserKeyDataItemType, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
+import {UserKeyDataModel,makeIntroSentence, UserKeyDataItemType, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
 import UserIntro from '../elements/UserIntro';
 import UserActivity from '../elements/UserActivity';
 import UserKeyData from '../elements/UserKeyData';
@@ -35,8 +35,8 @@ export default class UserProfile extends React.Component {
                 userLastName: '',
                 userAge: null,
                 userScore: null,
+                introSentence: '',
 
-                
                 userKeyData: [],
 
                 userActivitySessions:[],
@@ -61,6 +61,7 @@ export default class UserProfile extends React.Component {
                     userLastName: this.userMainData.data.userInfos.lastName,
                     userAge: this.userMainData.data.userInfos.age,
                     userScore: this.userMainData.data.score ||  this.userMainData.data.todayScore,
+                    introSentence:  makeIntroSentence(this.userMainData.data.score ||  this.userMainData.data.todayScore),
 
                     userKeyData: Array.from(Object.entries(this.userMainData.data.keyData)).map((key, value) => (
                         new UserKeyDataItemType(key, value)
@@ -84,6 +85,8 @@ export default class UserProfile extends React.Component {
                 console.log(
                     this.state.userId,
                     this.state.userScore,
+                    this.state.introSentence,
+
                     this.state.userFirstName,
                     this.state.userKeyData,
                     this.state.userActivitySessions,
