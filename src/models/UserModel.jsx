@@ -35,16 +35,19 @@ const introSentences = [
 
 export class UserKeyDataModel {
     constructor(calorieCount,proteinCount,carbohydrateCount,lipidCount){
+        
         this.calorieCount = calorieCount;
         this.proteinCount = proteinCount;
         this.carbohydrateCount = carbohydrateCount;
         this.lipidCount = lipidCount;
     }
 }
-export class UserKeyDataItemType {
-    constructor(KeyDataName, KeyDataValue) {
-        this.KeyDataName = KeyDataName;
-        this.KeyDataValue = KeyDataValue;
+export class UserKeyDataItem {
+    constructor(keyDataType, keyDataValue, keyDataUnit, keyDataIcon) {
+        this.keyDataType = keyDataType;
+        this.keyDataValue = keyDataValue;
+        this.keyDataUnit = keyDataUnit;
+        this.keyDataIcon = keyDataIcon;
     }
 }
 

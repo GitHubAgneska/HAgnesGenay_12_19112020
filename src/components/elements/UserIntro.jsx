@@ -6,13 +6,13 @@ const Wrapper = styled.section`
     padding: 4em;
     border: 2px solid grey;
 `;
-const UserIntro = ({userFirstName}) => {
+const UserIntro = ({userFirstName,introSentence}) => {
 
     return(
         <Fragment>
             <Wrapper>
                 <h1 className="userFirstName">Bonjour {userFirstName}</h1>
-                <p>placeholder</p>
+                <p>{introSentence}</p>
             </Wrapper>
         </Fragment>
     )
