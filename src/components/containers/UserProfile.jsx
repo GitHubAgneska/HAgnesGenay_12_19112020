@@ -120,7 +120,7 @@ export default class UserProfile extends React.Component {
                     
                     return (
 
-                        <Fragment>
+                        <main>
                             <Wrapper>
                                                 
                                 <UserIntro {...{userFirstName,introSentence }} />
@@ -132,7 +132,7 @@ export default class UserProfile extends React.Component {
                                 <UserSessionsLength {...{userLengthSessions}} />
 
                             </Wrapper>
-                        </Fragment>
+                        </main>
 
                     )
             }
