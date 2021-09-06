@@ -19,11 +19,16 @@ const App = () => {
         <div className="App">
             <div className="container" style={{height:'100%', width:'100%'}}>
                 <GlobalStyle />
-                <Router>
-                    <Header />
-
-                </Router>
-                <UserProfile />
+                    <Router>
+                        <Header /> {/* INSIDE router because contains main NAV with 'LINK TO'  */}
+                        <Fragment>
+                            <Switch>
+                                <Route exact path="/" render={() => <Redirect to="/userProfile/18" />} />
+                                <Route exact path="/userProfile/:id" component={UserProfile} />
+                                
+                            </Switch>
+                        </Fragment>
+                    </Router>
 
             </div>
         </div>
