@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 const StyledNavWrapper = styled.div `
     width: 70%;
     margin-left: 145px;
+    box-shadow: 0px 0px 10px #0000008f;
 `;
 const StyledNav = styled.nav ` 
     display: flex; flex-flow: row nowrap;

@@ -10,10 +10,11 @@ const StyledNavWrapper = styled.div `
     width: 120px; height:100vh;
     background-color:black; 
     display: flex; flex-flow: column nowrap; align-items: center;
+    justify-content: space-between;
 `;
 
 const StyledNavSide = styled.nav `
-    padding-top:255px;
+    padding-top:355px;
 `;
 
 const StyledUl = styled.ul `
@@ -25,10 +26,8 @@ const SideIcon = styled.img`
     height: 65px;
     width: 65px;
     border-radius: 5px;
-    margin: 20px 0px;
-    transition: width, height, 1ms;
-    &:hover { height: 70px;
-        width: 70px; }
+    margin: 10px 0px;
+    &:hover { box-shadow: 0px 0px 15px #fff; }
 `;
 
 const StyledP = styled.p`
