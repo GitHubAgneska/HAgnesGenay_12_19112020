@@ -1,12 +1,11 @@
-import React, { Fragment, Suspense } from 'react';
-import {UserKeyDataModel,makeIntroSentence, UserKeyDataItem, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
+import React from 'react';
+import {makeIntroSentence, UserKeyDataItem, ActivitySessionModel, PerformanceModel, SessionLengthModel} from '../../models/UserModel'
 import UserIntro from '../elements/UserIntro';
 import UserActivity from '../elements/UserActivity';
 import UserKeyData from '../elements/UserKeyData';
 import UserPerformances from '../elements/UserPerformances';
 import UserScore from '../elements/UserScore';
 import UserSessionsLength from '../elements/UserSessionsLength';
-import GraphsContainer from '../layout/Graphs_container';
 
 import icon_calories from '../../assets/icons/icon_calories.png';
 import icon_protein from '../../assets/icons/icon_protein.png';
@@ -20,12 +19,39 @@ import FetchDataService from '../../services/FetchDataService';
 FetchDataService.fetchData(); // necessary to inititate cache at 1st browser opening ===> should be A SINGLETON ?
 
 const MainWrapper = styled.section`
-border:4px solid yellow;
-    position: absolute;
-    height: 90%;width:90vw;
-    top: 90px;
-    left: 120px;
+        border:4px solid yellow;
+        position: absolute;
+        height: 90%;width:90vw;
+        top: 90px;
+        left: 120px;
 `;
+const SectionA = styled.section`
+    height:13.889vw; // 200px
+    border: 2px solid grey;
+    margin-bottom:25px;
+`;
+const SectionB = styled.section`
+    width:250px;
+    height:600px;
+    float: right;
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+`;
+const SectionC = styled.section`
+    height:325px;
+    width: 57.986vw; // 835px 
+    margin-bottom:25px;
+`;
+const SectionD = styled.section`
+    height:265px;
+    width: 57.986vw; // 835px
+    display:flex;flex-flow:row nowrap;
+    margin-bottom:25px;
+`;
+
 
 
 export default class UserProfile extends React.Component { 
@@ -100,22 +126,20 @@ export default class UserProfile extends React.Component {
             }
 
             render() {
-                console.log(
+                /* console.log(
                     this.state.userId,
                     this.state.userScore,
                     this.state.introSentence,
-
                     this.state.userFirstName,
-                    /* this.state.userKeyData, */
                     this.state.userActivitySessions,
                     this.state.userLengthSessions,
                     this.state.userPerformances,
                     this.state.userKeyDataCal
-                    );
+                    ); */
                     
                     const {
                         userFirstName, userScore, introSentence, 
-                        userKeyData, userActivitySessions, userLengthSessions,
+                        userActivitySessions, userLengthSessions,
                         userPerformances,
                         userKeyDataCal, userKeyDataProt, userKeyDataGlu,userKeyDataLipid
                     
@@ -125,15 +149,24 @@ export default class UserProfile extends React.Component {
 
                         <main>
                             <MainWrapper>
-                                                
-                                <UserIntro {...{userFirstName,introSentence }} />
-                                <UserKeyData {...{userKeyDataCal, userKeyDataProt, userKeyDataGlu,userKeyDataLipid}} />
-                                {/* <UserKeyData {...{userKeyData}} /> */}
-                                <UserActivity {...{userActivitySessions}} />
+
+                                <SectionA>
+                                    <UserIntro {...{userFirstName,introSentence }} />
+                                </SectionA>
+
+                                <SectionB>
+                                    <UserKeyData {...{userKeyDataCal, userKeyDataProt, userKeyDataGlu,userKeyDataLipid}} />
+                                </SectionB>        
                                 
-                                <UserScore {...{userScore}} />
-                                <UserPerformances {...{userPerformances}} />
-                                <UserSessionsLength {...{userLengthSessions}} />
+                                <SectionC>
+                                    <UserActivity {...{userActivitySessions}} />
+                                </SectionC>
+
+                                <SectionD>
+                                    <UserSessionsLength {...{userLengthSessions}} />
+                                    <UserPerformances {...{userPerformances}} />
+                                    <UserScore {...{userScore}} />
+                                </SectionD>
 
                             </MainWrapper>
                         </main>

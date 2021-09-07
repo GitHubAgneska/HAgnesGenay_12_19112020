@@ -2,10 +2,9 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const Wrapper = styled.section`
-    height:13.889vw; // 200px
-    border: 2px solid grey;
-
+    width:100%;height:100%; 
 `;
+
 const StyledH1 = styled.h1 `
     @use 'sass:math';-webkit-line-clamp: calc(floor(100% / 20));
     font-size: 3.333vw ;    // 48px; // 3em - in viewport 1440

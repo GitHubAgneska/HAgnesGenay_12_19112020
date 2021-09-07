@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import { Fragment } from "react"
 import { ResponsiveContainer,RadarChart, PolarGrid,PolarAngleAxis,PolarRadiusAxis,Radar } from "recharts"
 import styled from "styled-components"
 
@@ -17,17 +16,16 @@ const Wrapper = styled.section`
 const UserPerformances = ({userPerformances}) => {
     console.log('perf=', userPerformances)
     return (
-        <Fragment>
-            <Wrapper style={{ width: '100%', height: 300 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                        <RadarChart outerRadius={90} width={730} height={250} data={userPerformances}>
-                            <PolarGrid  stroke="#ffffff"  />
-                            <PolarAngleAxis dataKey="kind" style={{ fontSize: '80%', fill: 'rgba(255, 255, 255, 0.87)'}} />
-                            <Radar name="" dataKey="value" fill="red" fillOpacity={0.6} />
-                        </RadarChart>
-                </ResponsiveContainer>
-            </Wrapper>
-        </Fragment>
+
+        <Wrapper style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer width="100%" height="100%">
+                    <RadarChart outerRadius={90} width={730} height={250} data={userPerformances}>
+                        <PolarGrid  stroke="#ffffff"  />
+                        <PolarAngleAxis dataKey="kind" style={{ fontSize: '80%', fill: 'rgba(255, 255, 255, 0.87)'}} />
+                        <Radar name="" dataKey="value" fill="red" fillOpacity={0.6} />
+                    </RadarChart>
+            </ResponsiveContainer>
+        </Wrapper>
     )
 }
 

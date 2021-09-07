@@ -1,20 +1,20 @@
 import PropTypes from "prop-types"
-import {Fragment} from "react"
 import {BarChart, ReferenceLine, XAxis, YAxis,Tooltip, Legend, Bar, ResponsiveContainer} from "recharts"
 
 import styled from "styled-components"
 
 const Wrapper = styled.section`
-    padding: 4em;
-    height:30%;
-    background: papayawhip;
+
+    height:100%;
+    width: 100%
+    background:lightgrey;
 `;
 
 
 const UserActivity = ({userActivitySessions}) => {
 
     return (
-        <Wrapper style={{ width: '100%', height: 300 }}>
+        <Wrapper>
             <ResponsiveContainer>
                     <BarChart width={730} height={250} barSize={5} data={userActivitySessions}>
                         
