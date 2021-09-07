@@ -19,13 +19,13 @@ import styled from "styled-components"
 import FetchDataService from '../../services/FetchDataService';
 FetchDataService.fetchData(); // necessary to inititate cache at 1st browser opening ===> should be A SINGLETON ?
 
-const Wrapper = styled.section`
-    /* position: fixed; */
-    height: 100%;width:100vw;
+const MainWrapper = styled.section`
+border:4px solid yellow;
+    position: absolute;
+    height: 90%;width:90vw;
     top: 90px;
     left: 120px;
 `;
-
 
 
 export default class UserProfile extends React.Component { 
@@ -124,7 +124,7 @@ export default class UserProfile extends React.Component {
                     return (
 
                         <main>
-                            <Wrapper>
+                            <MainWrapper>
                                                 
                                 <UserIntro {...{userFirstName,introSentence }} />
                                 <UserKeyData {...{userKeyDataCal, userKeyDataProt, userKeyDataGlu,userKeyDataLipid}} />
@@ -135,7 +135,7 @@ export default class UserProfile extends React.Component {
                                 <UserPerformances {...{userPerformances}} />
                                 <UserSessionsLength {...{userLengthSessions}} />
 
-                            </Wrapper>
+                            </MainWrapper>
                         </main>
 
                     )
