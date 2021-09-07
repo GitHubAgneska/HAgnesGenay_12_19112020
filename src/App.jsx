@@ -17,7 +17,6 @@ const GlobalStyle = createGlobalStyle`
     html {
         font-size: 100%; /* = 16px default */
         text-rendering: optimizeLegibility;
-        font-family:'Montserrat', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }

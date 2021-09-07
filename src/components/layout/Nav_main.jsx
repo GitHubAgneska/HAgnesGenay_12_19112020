@@ -12,6 +12,8 @@ const StyledNav = styled.nav `
 `;
 const StyledLink = styled(Link) `
     color:white;
+    font-size:24px;
+    font-weight:400;
     &:active, &:hover { text-decoration: underline;}
 `;
 
