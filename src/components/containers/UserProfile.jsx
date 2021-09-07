@@ -6,6 +6,7 @@ import UserKeyData from '../elements/UserKeyData';
 import UserPerformances from '../elements/UserPerformances';
 import UserScore from '../elements/UserScore';
 import UserSessionsLength from '../elements/UserSessionsLength';
+import GraphsContainer from '../layout/Graphs_container';
 
 import icon_calories from '../../assets/icons/icon_calories.png';
 import icon_protein from '../../assets/icons/icon_protein.png';
@@ -19,11 +20,13 @@ import FetchDataService from '../../services/FetchDataService';
 FetchDataService.fetchData(); // necessary to inititate cache at 1st browser opening ===> should be A SINGLETON ?
 
 const Wrapper = styled.section`
-    padding: 4em;
-    border: 2px solid grey;
+    /* position: fixed; */
+    height: 100%;width:100vw;
+    top: 90px;
+    left: 120px;
 `;
 
-const iconsPath = '../../assets/icons/';
+
 
 export default class UserProfile extends React.Component { 
 
@@ -127,6 +130,7 @@ export default class UserProfile extends React.Component {
                                 <UserKeyData {...{userKeyDataCal, userKeyDataProt, userKeyDataGlu,userKeyDataLipid}} />
                                 {/* <UserKeyData {...{userKeyData}} /> */}
                                 <UserActivity {...{userActivitySessions}} />
+                                
                                 <UserScore {...{userScore}} />
                                 <UserPerformances {...{userPerformances}} />
                                 <UserSessionsLength {...{userLengthSessions}} />

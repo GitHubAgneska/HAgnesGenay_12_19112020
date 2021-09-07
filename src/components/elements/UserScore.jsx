@@ -35,28 +35,27 @@ const UserScore = ({userScore}) => {
     return (
         
         <Fragment>
-            <ResponsiveContainer>
-                <Wrapper>
-                    <PieChart width={800} height={400} >
-                        <Pie data={data}
-                            label={renderCustomizedLabel}
-                            cx="50%"
-                            cy="50%"
-                            startAngle={220}
-                            endAngle={0}
-                            innerRadius={70}
-                            outerRadius={80}
-                            fill="#8884d8"
-                            paddingAngle={5}
-                            dataKey="value">
-                            { data.map((entry, index) => (
-                                <Cell key={ `cell-${index}` } fill={COLOR}/> )) } 
-                                
-                        </Pie>
-                    </PieChart>
-                    
-                </Wrapper>
-            </ResponsiveContainer>
+            <Wrapper style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer>
+                        <PieChart width={800} height={400} >
+                            <Pie data={data}
+                                label={renderCustomizedLabel}
+                                cx="50%"
+                                cy="50%"
+                                startAngle={220}
+                                endAngle={0}
+                                innerRadius={70}
+                                outerRadius={80}
+                                fill="#8884d8"
+                                paddingAngle={5}
+                                dataKey="value">
+                                { data.map((entry, index) => (
+                                    <Cell key={ `cell-${index}` } fill={COLOR}/> )) } 
+                                    
+                            </Pie>
+                        </PieChart>
+                </ResponsiveContainer>
+            </Wrapper>
         </Fragment>
     )
 } 

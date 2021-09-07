@@ -4,8 +4,11 @@ import UserKeyDataItem from "./UserKeyDataItem"
 import styled from "styled-components"
 
 const Wrapper = styled.section `
+    
     padding: 4em;
     border: 2px solid grey;
+    height: 60%;
+    width: 20%;
 `;
 
 const UserKeyData = (props) => {
@@ -21,7 +24,6 @@ const UserKeyData = (props) => {
                     ))}
 
                 </ul>
-
             </Wrapper>
         </Fragment>
     )

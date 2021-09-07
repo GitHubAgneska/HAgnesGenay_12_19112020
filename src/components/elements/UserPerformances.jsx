@@ -18,15 +18,15 @@ const UserPerformances = ({userPerformances}) => {
     console.log('perf=', userPerformances)
     return (
         <Fragment>
-            <ResponsiveContainer width="100%" height="100%">
-                <Wrapper>
-                    <RadarChart outerRadius={90} width={730} height={250} data={userPerformances}>
-                        <PolarGrid  stroke="#ffffff"  />
-                        <PolarAngleAxis dataKey="kind" style={{ fontSize: '80%', fill: 'rgba(255, 255, 255, 0.87)'}} />
-                        <Radar name="" dataKey="value" fill="red" fillOpacity={0.6} />
-                    </RadarChart>
-                </Wrapper>
-            </ResponsiveContainer>
+            <Wrapper style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                        <RadarChart outerRadius={90} width={730} height={250} data={userPerformances}>
+                            <PolarGrid  stroke="#ffffff"  />
+                            <PolarAngleAxis dataKey="kind" style={{ fontSize: '80%', fill: 'rgba(255, 255, 255, 0.87)'}} />
+                            <Radar name="" dataKey="value" fill="red" fillOpacity={0.6} />
+                        </RadarChart>
+                </ResponsiveContainer>
+            </Wrapper>
         </Fragment>
     )
 }

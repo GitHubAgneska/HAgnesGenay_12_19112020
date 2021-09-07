@@ -3,6 +3,7 @@ import { Fragment } from "react"
 import styled from "styled-components"
 
 const Wrapper = styled.section`
+    height:30%;
     padding: 4em;
     border: 2px solid grey;
 `;

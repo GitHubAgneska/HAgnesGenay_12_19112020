@@ -12,18 +12,18 @@ const UserSessionsLength = ({userLengthSessions}) => {
 
     return (
         <Fragment>
-            <ResponsiveContainer width="100%" height="100%">
+            <Wrapper style={{ width: '100%', height: 300 }}>
+                <ResponsiveContainer width="100%" height="100%">
 
-                <Wrapper>
                     <LineChart width={400} height={250} data={userLengthSessions} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                         <XAxis dataKey="day" />
                         <Tooltip />
                         <Legend />
                         <Line type="monotone" dataKey="sessionLength" stroke="#fff" />
                     </LineChart>
-                </Wrapper>
 
-            </ResponsiveContainer>
+                </ResponsiveContainer>
+            </Wrapper>
         </Fragment>
     )
 }
