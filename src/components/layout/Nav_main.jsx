@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const StyledNavWrapper = styled.div `
     width: 70%;
-    margin-left: 145px;
+    margin: 0% 5% 0% 10%;
     box-shadow: 0px 0px 10px #0000008f;
 `;
 const StyledNav = styled.nav ` 
@@ -13,8 +13,9 @@ const StyledNav = styled.nav `
 `;
 const StyledLink = styled(Link) `
     color:white;
-    font-size:24px;
+    font-size:1.667vw  // 24px in viewport 1440
     font-weight:400;
+    padding: 0% 4%;
     &:active, &:hover { text-decoration: underline;}
 `;
 

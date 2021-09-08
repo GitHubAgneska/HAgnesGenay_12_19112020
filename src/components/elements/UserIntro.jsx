@@ -12,7 +12,7 @@ const StyledH1 = styled.h1 `
 const StyledSpan = styled.span`color:red;`;
 
 const Styledp = styled.p`
-    font-size: 1.250vw;    // 18px || 1.125em - in viewport 1440
+    font-size: 1.250vw; // 18px || 1.125em - in viewport 1440
 `;
 
 const UserIntro = ({userFirstName,introSentence}) => {

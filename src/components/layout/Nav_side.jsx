@@ -7,7 +7,8 @@ import icon_weight from '../../assets/icons/icon_weight.png'
 import styled from "styled-components"
 
 const StyledNavWrapper = styled.div `
-    width: 120px; height:100vh;
+    width: 8%; // 120px in 1440
+    height:100vh;
     background-color:black; 
     display: flex; flex-flow: column nowrap; align-items: center;
     justify-content: space-between;
@@ -30,13 +31,16 @@ const SideIcon = styled.img`
     &:hover { box-shadow: 0px 0px 15px #fff; }
 `;
 
-const StyledP = styled.p`
-    font-size:12px; font-weight:400;
+const CopyrightWrapper = styled.div`
     transform: rotate(-90deg);
-    width:140px;margin-top:165px;
-    color:white;
+    width:140px;
+    margin-bottom: 100px;
 `;
 
+const StyledP = styled.p`
+    font-size:12px; font-weight:400;
+    color:white;
+`;
 
 const NavSide = () => {
     return(
@@ -49,7 +53,9 @@ const NavSide = () => {
                     <li><Link to="/"><SideIcon src={icon_weight} alt="yoga icon" /></Link></li>
                 </StyledUl>
             </StyledNavSide>
-            <StyledP>Copyright SportSee 2020</StyledP>
+            <CopyrightWrapper>
+                <StyledP>Copyright SportSee 2020</StyledP>
+            </CopyrightWrapper>
         </StyledNavWrapper>
     )
 }
