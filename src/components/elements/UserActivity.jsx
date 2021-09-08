@@ -8,8 +8,20 @@ const Wrapper = styled.section`
     background-color:#74798C;
 `;
 
-const UserActivity = ({userActivitySessions}) => {
+const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+        return (
+            <div style={{width:"50px",height:"100px", backgroundColor:"red", color:"white", padding:"10%"}}>
+                <p>{`${payload[0].value}`}Kg</p>
+                <p>{`${payload[1].value}`}kCal</p>
+            </div>
+        );
+    }
+    return null;
+};
 
+const UserActivity = ({userActivitySessions}) => {
+    console.log(userActivitySessions);
     return (
         <Wrapper>
             <ResponsiveContainer>
@@ -20,9 +32,9 @@ const UserActivity = ({userActivitySessions}) => {
                         {/*  <YAxis type= "category" allowDuplicatedCategory="true" dataKey="kilogram"  dataKey="calories" orientation="right" tickCount="3"  allowDecimals="false"/>*/}                        <ReferenceLine y={100} label="" stroke="grey" strokeDasharray="3 3" />
                         <ReferenceLine y={250} stroke="grey" strokeDasharray="3 3" />
                         <Legend/>
-                        <Bar dataKey="kilogram" fill="#8884d8"/>
-                        <Bar dataKey="calories" fill="#82ca9d"/>
-
+                        <Bar dataKey="kilogram" fill="red"/>
+                        <Bar dataKey="calories" fill="black"/>
+                        <Tooltip content={<CustomTooltip />} cursor={false}/>
                     </BarChart>
             </ResponsiveContainer>
         </Wrapper>
