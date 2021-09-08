@@ -3,9 +3,9 @@ import { ResponsiveContainer,RadarChart, PolarGrid,PolarAngleAxis,PolarRadiusAxi
 import styled from "styled-components"
 
 const Wrapper = styled.section`
-    padding: 4em;
     background-color: black;
-
+    flex-basis:30%;
+    max-height:100%;
 `;
 
 /* style={{ textAnchor: 'middle', fontSize: '80%', fill: 'rgba(0, 0, 0, 0.87)' }} */
@@ -14,10 +14,10 @@ const Wrapper = styled.section`
     style={{ textAnchor: 'middle', fontSize: '80%', fill: 'rgba(0, 0, 0, 0.87)' }}></Label> */}
 
 const UserPerformances = ({userPerformances}) => {
-    console.log('perf=', userPerformances)
+    /* console.log('perf=', userPerformances) */
     return (
 
-        <Wrapper style={{ width: '100%', height: 300 }}>
+        <Wrapper>
             <ResponsiveContainer width="100%" height="100%">
                     <RadarChart outerRadius={90} width={730} height={250} data={userPerformances}>
                         <PolarGrid  stroke="#ffffff"  />
@@ -28,9 +28,5 @@ const UserPerformances = ({userPerformances}) => {
         </Wrapper>
     )
 }
-
-UserPerformances.propTypes = {
-    userPerformances: PropTypes.array
-}
-
+UserPerformances.propTypes = { userPerformances: PropTypes.array}
 export default UserPerformances

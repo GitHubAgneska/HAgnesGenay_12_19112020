@@ -37,7 +37,7 @@ const App = () => {
     
     return (
         <div className="App">
-            <div className="container" style={{height:'100%', width:'100%'}}>
+            <div className="container" style={{height:'100%', width:'100%', position:'fixed'}}>
                 <GlobalStyle />
                     <Router>
                         <Header /> {/* INSIDE router because contains NAV with 'LINK TO'  */}

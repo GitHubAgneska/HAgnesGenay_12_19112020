@@ -18,20 +18,24 @@ import styled from "styled-components"
 import FetchDataService from '../../services/FetchDataService';
 FetchDataService.fetchData(); // necessary to inititate cache at 1st browser opening ===> should be A SINGLETON ?
 
+// whole main content container
 const MainWrapper = styled.section`
-        border:4px solid yellow;
+        /* border:4px solid yellow; */
         position: absolute;
-        height: 90%;width:90vw;
+        height: 90%;width:80vw;
+        margin: 5%;
         top: 90px;
         left: 120px;
 `;
+// user intro
 const SectionA = styled.section`
-    height:13.889vw; // 200px
-    border: 2px solid grey;
+    /* border: 2px solid grey; */
     margin-bottom:25px;
 `;
+// user keydata
 const SectionB = styled.section`
-    width:250px;
+    /* border: 2px solid yellow; */
+    width:20%; // 250px
     height:600px;
     float: right;
     &::after {
@@ -40,15 +44,20 @@ const SectionB = styled.section`
         clear: both;
     }
 `;
+// graph activity
 const SectionC = styled.section`
+/* border: 2px solid pink; */
     height:325px;
-    width: 57.986vw; // 835px 
+    width: 75%; /* width: 57.986vw; 835px  */
     margin-bottom:25px;
 `;
+// graphs : 3 containers
 const SectionD = styled.section`
-    height:265px;
-    width: 57.986vw; // 835px
+/* border: 5px solid green; */
+    height:260px;
+    width: 75%; /* width: 57.986vw; // 835px */
     display:flex;flex-flow:row nowrap;
+    justify-content: space-between;
     margin-bottom:25px;
 `;
 

@@ -1,36 +1,29 @@
 import PropTypes from "prop-types"
+import { Fragment } from "react";
 import styled from "styled-components"
 
-const Wrapper = styled.section`
-    width:100%;height:100%; 
-`;
-
 const StyledH1 = styled.h1 `
-    @use 'sass:math';-webkit-line-clamp: calc(floor(100% / 20));
     font-size: 3.333vw ;    // 48px; // 3em - in viewport 1440
     font-weight:500;
-    margin-left: 7.639vw;   // 110px; - in viewport 1440
+    margin-left: 0;
+    margin-top: 0;
     margin-bottom:1.389vw;  // 20px;  - in viewport 1440
 `;
-const StyledSpan = styled.span`
-    color:red;
-`;
+const StyledSpan = styled.span`color:red;`;
 
 const Styledp = styled.p`
-    margin-left:  7.639vw; // 110px; - in viewport 1440
     font-size: 1.250vw;    // 18px || 1.125em - in viewport 1440
 `;
 
 const UserIntro = ({userFirstName,introSentence}) => {
 
     return(
-        <Wrapper>
+        <Fragment>
             <StyledH1 className="userFirstName">Bonjour <StyledSpan>{userFirstName}</StyledSpan></StyledH1>
             <Styledp>{introSentence}</Styledp>
-        </Wrapper>
+        </Fragment>
     )
 }
-
 UserIntro.propTypes = {
     firstName: PropTypes.string
     /* firstName: PropTypes.string.isRequired  => ! incompatible w/ fetch load time .. */

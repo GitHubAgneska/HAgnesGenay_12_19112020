@@ -2,12 +2,12 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 const KeyitemWrapper = styled.div `
-    width: 250px;height:125px;
-    display: flex;justify-content:center;align-items:center;
-    background-color: lightgrey;
+    height:125px;
+    display: flex; justify-content:center; align-items:center;
+    background-color: #FBFBFB;
 `;
 const Keyitem = styled.div `
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     height:60px;width:195px;
     display: flex; flex-direction: row nowrap;
 `;
@@ -19,7 +19,6 @@ const KeyItemIcon = styled.img `
     border-radius:5px;
     margin-right:5%;
 `;
-
 
 const UserKeyDataItem = (props) => {
     
