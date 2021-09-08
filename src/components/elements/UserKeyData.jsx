@@ -3,15 +3,13 @@ import UserKeyDataItem from "./UserKeyDataItem"
 import styled from "styled-components"
 
 const Wrapper = styled.section `
-    border:2px solid green;
+    /* border:2px solid green; */
     width:100%;height:100%;
     display:flex;flex-flow:column nowrap;
     justify-content: space-between;
 `;
 
-
 const UserKeyData = (props) => {
-
     // console.log('keyData INPARENT', props) // object of objects
     return(
         <Wrapper>
@@ -21,9 +19,5 @@ const UserKeyData = (props) => {
         </Wrapper>
     )
 }
-
-UserKeyData.propTypes = {
-    userKeyData: PropTypes.array
-}
-
+UserKeyData.propTypes = { userKeyData: PropTypes.array }
 export default UserKeyData
