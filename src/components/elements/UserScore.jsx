@@ -17,52 +17,56 @@ const Wrapper = styled.section `
 const UserScore = ({userScore}) => {
     // console.log('score==',userScore )
     const data = [ { name: 'Score', value: userScore*100 } ];
-    const COLOR = '#0088FE';
+    const COLOR = 'red';
     const RADIAN = Math.PI / 180;
     
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-        
 /*         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN); */
 
         return (
             <Fragment>
-                <text x={cx} y={cy} dy={10} textAnchor="middle" fill={'black'} style={{width:'50%', fontSize:'28px', fontWeight:'bold'}}>
+                <text x={cx} y={cy} dy={0} textAnchor="middle" fill={'black'} style={{width:'50%', fontSize:'28px', fontWeight:'bold'}}>
                     { userScore*100}% 
                 </text>
-                <text x={cx+10} y={cy+20} dy={15} textAnchor="middle" fill={'grey'} style={{fontSize:'18px'}}>
+                <text x={cx} y={cy+15} dy={15} textAnchor="middle" fill={'grey'} style={{fontSize:'18px'}}>
                     de votre
                 </text>
-                <text x={cx+10} y={cy+45} dy={15} textAnchor="middle" fill={'grey'} style={{fontSize:'18px'}}>
+                <text x={cx} y={cy+45} dy={15} textAnchor="middle" fill={'grey'} style={{fontSize:'18px'}}>
                     objectif
                 </text>
             </Fragment>
         );
     };
+    const renderLegend = () => {
+        return (
+            <p style={{color:'grey', width:'60%', fontSize:'15px', marginTop:'0'}}>Score</p>
+        );
+    }
 
     return (
         <Wrapper>
             <ResponsiveContainer>
                     <PieChart width={800} height={400}>
-                        <Pie data={data}
+                        <Pie 
+                            data={data}
                             label={renderCustomizedLabel}
+                            labelLine={false}
                             cx="50%"
-                            cy="50%"
+                            cy="45%"
                             startAngle={220}
                             endAngle={0}
                             innerRadius={70}
-                            outerRadius={80}
-                            fill="white"
+                            outerRadius={82}
                             paddingAngle={5}
-                            
+                            cornerRadius={40}
                             dataKey="value">
                             { data.map((entry, index) => (
                                 <Cell key={ `cell-${index}` } fill={COLOR} radius={[50, 50, 50, 50]}/> )) } 
-                                
                         </Pie>
-                        <Legend verticalAlign="top" height={40} align="right" iconType="circle" iconSize="10" />
-
+                        <Legend verticalAlign="top" align="left" content={renderLegend} />
+                                
                     </PieChart>
             </ResponsiveContainer>
         </Wrapper>

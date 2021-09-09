@@ -34,7 +34,7 @@ const CustomTooltip = ({ payload }) => {
 const renderLegend = () => {
     return (
         <p style={{color:'white', opacity:'0.7', width:'60%'}}>Durée moyenne des sessions</p>
-);
+    );
 }
 
 const UserSessionsLength = ({userLengthSessions}) => {
