@@ -15,12 +15,12 @@ const CustomTooltipClass = {
     fontSize:"10px", fontWeight:"bold"
 } 
 
-const CustomTooltip = ({ active, payload }) => {
-        if (active && payload && payload.length) {
+const CustomTooltip = ({ payload }) => {
+    if (payload && payload.length) {
+           /*  console.log('HERE:', payload) */
         return (
             <div style={CustomTooltipClass}>
-                <p key={Math.random()}>{payload.sessionLength}mn</p> 
-                {/*  { payload.map( (item) => ( <p key={Math.random()}>{item.sessionLength}mn</p> ))} */}
+                { payload.map( (item) => ( <p key={Math.random()}>{item.payload.sessionLength}mn</p> ))}
             </div>
         );
     }
