@@ -3,9 +3,13 @@ import { ResponsiveContainer,LineChart,Line, ReferenceArea,CartesianGrid,XAxis,Y
 import styled from "styled-components"
 
 const Wrapper = styled.section`
-    flex-basis:30%;
+/*     flex-basis:30%;
+    max-height:100%; */
+    
     background-color: red;
-    max-height:100%;
+    padding:5%;
+    height:100%;
+    width: 100%;
 `;
 const CustomTooltipClass = {
     width:"50px",
