@@ -146,7 +146,6 @@ export default class UserProfile extends React.Component {
                     this.state.userPerformances,
                     this.state.userKeyDataCal
                     ); */
-                    
                     const {
                         userFirstName, userScore, introSentence, 
                         userActivitySessions, userLengthSessions,
