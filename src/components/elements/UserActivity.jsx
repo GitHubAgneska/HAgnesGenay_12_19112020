@@ -3,9 +3,10 @@ import {BarChart, ReferenceLine, XAxis, YAxis,Tooltip, Legend, Bar, ResponsiveCo
 import styled from "styled-components"
 
 const Wrapper = styled.section`
+    padding:5%;
     height:100%;
-    width: 100%
-    background-color:#74798C;
+    width: 100%;
+
 `;
 
 const CustomTooltipClass = {
@@ -27,11 +28,21 @@ const CustomTooltip = ({ active, payload }) => {
     }
     return null;
 };
+
 const CustomizedCursor = ({active}) => {
     if (active) {
         return ( <div style={{width:"50px",height:"100px",opacity:"0.5"}}></div> );
     }
     return null;
+}
+
+const renderLegend = () => {
+        return (
+            <ul style={{width: '100%',display: 'flex', flexFlow:'row nowrap', justifyContent:'flex-end', listStyle:'circle'}}>
+                <li>Poids</li>
+                <li style={{margin:'0 5%' , listStyle:'circle'}}>Calories brûlées</li>
+            </ul>
+    );
 }
 
 let getDay = (x) => { return (x.day.substr(x.day.length-1) > 0? x.day.substring(x.day.length-1):x.day.substring(x.day.length-2)); }
@@ -42,17 +53,17 @@ const UserActivity = ({userActivitySessions}) => {
     return (
         <Wrapper>
             <ResponsiveContainer>
-                    <BarChart width={730} height={100} barSize={8} data={userActivitySessions}>
-                        
+                    <BarChart barSize={8} data={userActivitySessions}>
                         <XAxis dataKey={getDay} tickLine={false} />
-                        
-                        <YAxis orientation="right" tickCount="4" allowDecimals={false}  tickLine={false} dataKey="kilogram"  domain={['dataMin +50', 'dataMax+3']}/>
+                        <YAxis orientation="right" tickCount="5" allowDecimals={false}  tickLine={false} dataKey="kilogram"  domain={['dataMin-2', 'dataMax+2']}/>
                         <ReferenceLine y="70" stroke="grey" strokeDasharray="3 3" />
-                        <Legend verticalAlign="top" height={36}/>
-                        <Bar dataKey="kilogram" fill="red" radius={[50, 50, 0, 0]} />
-                        <Bar dataKey="calories" fill="black" radius={[50, 50, 0, 0]} maxBarSize="60"/>
-                        <Tooltip content={<CustomTooltip />} />
+                        {/* <Legend content={renderLegend} verticalAlign="top" height={40} align="right" iconType="circle" iconSize="10"/> */}
+                        
+                        <Legend verticalAlign="top" height={40} align="right" iconType="circle" iconSize="10" />
+                        <Bar dataKey="kilogram" fill="black" radius={[50, 50, 0, 0]} />
+                        <Bar dataKey="calories" fill="red" radius={[50, 50, 0, 0]} maxBarSize="4"/>
                         {/* <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor />}/> */}
+                        <Tooltip content={<CustomTooltip />} />
                     </BarChart>
             </ResponsiveContainer>
         </Wrapper>

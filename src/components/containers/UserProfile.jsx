@@ -50,6 +50,7 @@ const SectionC = styled.section`
     height:325px;
     width: 75%; /* width: 57.986vw; 835px  */
     margin-bottom:25px;
+    background-color:#FBFBFB;
 `;
 // graphs : 3 containers
 const SectionD = styled.section`
