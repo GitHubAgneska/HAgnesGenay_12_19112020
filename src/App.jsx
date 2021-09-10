@@ -32,7 +32,6 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-
 const App = () => {
     
     return (
@@ -49,7 +48,6 @@ const App = () => {
                             </Switch>
                         </Fragment>
                     </Router>
-
             </div>
         </div>
     )

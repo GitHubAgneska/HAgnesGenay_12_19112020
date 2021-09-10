@@ -6,77 +6,62 @@ import UserKeyData from '../elements/UserKeyData';
 import UserPerformances from '../elements/UserPerformances';
 import UserScore from '../elements/UserScore';
 import UserSessionsLength from '../elements/UserSessionsLength';
+import FetchDataService from '../../services/FetchDataService';
 
 import icon_calories from '../../assets/icons/icon_calories.png';
 import icon_protein from '../../assets/icons/icon_protein.png';
 import icon_carbs from '../../assets/icons/icon_carbs.png';
 import icon_fat from '../../assets/icons/icon_fat.png';
+import { MainWrapper, SectionA, SectionB, SectionC, SectionD } from '../../style/userProfile_style'
 
+let location = window.location;
+let defaultId = 18;
+let currentId = null;
 
-import styled from "styled-components"
+/** Method that checks and handles change id in URL and retrieves new provided id */
+let checkUserIdHasChanged = () => {
+    return location.search.split('/userProfile/')[1] !== defaultId ? currentId = location.search.split('/userProfile/')[1] : currentId = defaultId;
+}
 
-import FetchDataService from '../../services/FetchDataService';
-FetchDataService.fetchData(); // necessary to inititate cache at 1st browser opening ===> should be A SINGLETON ?
+/**  
+ *   creation of a Singleton for 'fetch()'
+ *   This will ensure that INIT FETCH will only be called once, when the app is launched
+ *   The next calls to fetch() service will occur 
+ *   if the ID is changed in the url and the page is reloaded with a new id
+**/
+export const createSingleton = (createInstance) => {
+    let instance = undefined;
+    return {
+        getInstance: () => instance || (instance = createInstance())
+    };
+};
 
-// whole main content container
-const MainWrapper = styled.section`
-        /* border:4px solid yellow; */
-        position: absolute;
-        height: 90%;width:80vw;
-        margin: 5%;
-        top: 90px;
-        left: 120px;
-`;
-// user intro
-const SectionA = styled.section`
-    /* border: 2px solid grey; */
-    margin-bottom:25px;
-`;
-// user keydata
-const SectionB = styled.section`
-    /* border: 2px solid yellow; */
-    width:20%; // 250px
-    height:600px;
-    float: right;
-    &::after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-`;
-// graph activity
-const SectionC = styled.section`
-/* border: 2px solid pink; */
-    height:325px;
-    width: 75%; /* width: 57.986vw; 835px  */
-    margin-bottom:25px;
-    background-color:#FBFBFB;
-`;
-// graphs : 3 containers
-const SectionD = styled.section`
-/* border: 5px solid green; */
-    height:260px;
-    width: 75%; /* width: 57.986vw; // 835px */
-    display:flex;flex-flow:row nowrap;
-    justify-content: space-between;
-    margin-bottom:25px;
-`;
+const init = () => ({ fetch: () => {
+    currentId = defaultId;
+    // checkUserIdHasChanged()
+    FetchDataService.fetchData(currentId)}
+});
 
+const data = createSingleton(init);
+data.getInstance().fetch();
 
 
 export default class UserProfile extends React.Component { 
-
+        
         constructor(props){
             super(props);
+            this.userId = currentId;
 
             this.storage = window.localStorage;
+
             this.userMainData = JSON.parse(this.storage.getItem('userMainData'));
             this.userActivityData = JSON.parse(this.storage.getItem('userActivityData'));
             this.userSessionLengthData = JSON.parse(this.storage.getItem('userSessionsLength'));
             this.userPerfData = JSON.parse(this.storage.getItem('userPerfData'));
 
             this.state = {
-                    userId: null,
+
+                    userId: currentId,
                     userFirstName: '',
                     userLastName: '',
                     userAge: null,
@@ -107,18 +92,16 @@ export default class UserProfile extends React.Component {
             }
 
             componentDidMount() {
-                
+
                 this.setState({
                     
                     userId: this.userMainData.data.id,
-
                     userFirstName: this.userMainData.data.userInfos.firstName,
                     userLastName: this.userMainData.data.userInfos.lastName,
                     userAge: this.userMainData.data.userInfos.age,
                     userScore: this.userMainData.data.score ||  this.userMainData.data.todayScore,
                     introSentence:  makeIntroSentence(this.userMainData.data.score ||  this.userMainData.data.todayScore),
 
-                    
                     userKeyDataCal: new UserKeyDataItem('Calories', this.userMainData.data.keyData.calorieCount, 'kCal', icon_calories),
                     userKeyDataProt: new UserKeyDataItem('Proteines', this.userMainData.data.keyData.proteinCount, 'g', icon_protein),
                     userKeyDataGlu: new UserKeyDataItem('Glucides', this.userMainData.data.keyData.carbohydrateCount, 'g', icon_carbs),
@@ -136,7 +119,7 @@ export default class UserProfile extends React.Component {
             }
 
             render() {
-                /* console.log(
+                console.log(
                     this.state.userId,
                     this.state.userScore,
                     this.state.introSentence,
@@ -145,7 +128,7 @@ export default class UserProfile extends React.Component {
                     this.state.userLengthSessions,
                     this.state.userPerformances,
                     this.state.userKeyDataCal
-                    ); */
+                    );
                     const {
                         userFirstName, userScore, introSentence, 
                         userActivitySessions, userLengthSessions,
