@@ -1,6 +1,7 @@
 
+import { UserModel } from "../models/UserModel";
+
 const apiBaseUrl = 'http://localhost:3000/user/';
-let userMainData = {}, userActivityData = {}, userSessionLengthData= {}, userPerfData = {};
 const myStorage = window.localStorage;
 class endpointModel { constructor(name, url, userId) { this.name = name; this.url = url; this.userId= userId;}}
 
@@ -10,7 +11,10 @@ const FetchDataService = {
     clearStorage: function () { myStorage.clear() },
 
     fetchData : function(userId) {
-        console.log('USERID IN FETCH==', userId)
+
+        let user = new UserModel();
+        user.userId = userId; console.log('USERID IN FETCH==', userId, user);
+        
         const endpoints = [
             new endpointModel('mainData', apiBaseUrl + userId),
             new endpointModel('activityData', apiBaseUrl + userId + '/activity'),
@@ -31,17 +35,19 @@ const FetchDataService = {
                         return responses;
                     })
                     .then(responses => Promise.all(responses.map(r => r.json())))
-                    .then(data => {
-                        console.log('ID======>', data[0].data.id)
-                        userMainData = data[0];
-                        userActivityData = data[1];
-                        userSessionLengthData = data[2];
-                        userPerfData = data[3];
+                    .then(data => { // returns an ARRAY
+                        // console.log('data at fetch all==', data);
+                        console.log('ID======>', data[0].data.id);
 
-                        myStorage.setItem('userMainData',JSON.stringify(userMainData));
-                        myStorage.setItem('userActivityData',JSON.stringify(userActivityData));
-                        myStorage.setItem('userSessionsLength',JSON.stringify(userSessionLengthData));
-                        myStorage.setItem('userPerfData',JSON.stringify(userPerfData));
+                        user.userMainData = data[0].data;
+                        user.userActivityData = data[1].data;
+                        user.userSessionLengthData = data[2].data;
+                        user.userPerfData = data[3].data;
+
+                        user.allUserData.push(user.userMainData,user.userActivityData,user.userSessionLengthData, user.userPerfData );
+                        //console.log('allUserData==', user.allUserData)
+
+                        myStorage.setItem(user.userId, JSON.stringify(user.allUserData));
                     })
             }
             catch(error) { console.log(error) }

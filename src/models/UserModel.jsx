@@ -1,29 +1,21 @@
 export class UserModel {
-    constructor(id, firstName, lastName, age, score){
-        this.id = id;
-        
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.score = score;
-        this.introSentence = makeIntroSentence(this.score);
-
-        this.keyData = UserKeyDataModel;
-        this.activitySessions = [];
-        this.performances = [];
-        this.sessions = [];
+    constructor(userId, userMainData,userActivityData,userPerfData,userSessionLengthData){
+        this.userId = userId;
+        this.userMainData = userMainData;
+        this.userActivityData = userActivityData;
+        this.userPerfData = userPerfData;
+        this.userSessionLengthData = userSessionLengthData;
+        this.allUserData = [];
     }
-
 }
+
 export function makeIntroSentence(score) {
-    
     let sentence = '';
     return score * 100 < 50 ? sentence=introSentences[2]
             : score* 100 === 50? sentence=introSentences[1]
             : score* 100 > 50? sentence = introSentences[0]
             : sentence
 }
-
 
 var emoji = String.fromCodePoint(0x1F621)
 
@@ -35,7 +27,6 @@ const introSentences = [
 
 export class UserKeyDataModel {
     constructor(calorieCount,proteinCount,carbohydrateCount,lipidCount){
-        
         this.calorieCount = calorieCount;
         this.proteinCount = proteinCount;
         this.carbohydrateCount = carbohydrateCount;

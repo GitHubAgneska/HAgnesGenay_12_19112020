@@ -93,27 +93,32 @@ export default class UserProfile extends React.Component {
 
             componentDidMount() {
 
+                console.log('storage =>',  JSON.parse(this.storage.getItem(18)))
+                //console.log('storage =>',  (this.storage.getItem(18)))
+                //console.log('storage =>',  this.userMainData)
+                //console.log('storage =>',  this.userActivityData)
+
                 this.setState({
                     
-                    userId: this.userMainData.data.id,
-                    userFirstName: this.userMainData.data.userInfos.firstName,
-                    userLastName: this.userMainData.data.userInfos.lastName,
-                    userAge: this.userMainData.data.userInfos.age,
-                    userScore: this.userMainData.data.score ||  this.userMainData.data.todayScore,
-                    introSentence:  makeIntroSentence(this.userMainData.data.score ||  this.userMainData.data.todayScore),
+                    //userId: this.userMainData.id,
+                    userFirstName: this.userMainData.userInfos.firstName,
+                    userLastName: this.userMainData.userInfos.lastName,
+                    userAge: this.userMainData.userInfos.age,
+                    userScore: this.userMainData.score ||  this.userMainData.todayScore,
+                    introSentence:  makeIntroSentence(this.userMainData.score ||  this.userMainData.todayScore),
 
-                    userKeyDataCal: new UserKeyDataItem('Calories', this.userMainData.data.keyData.calorieCount, 'kCal', icon_calories),
-                    userKeyDataProt: new UserKeyDataItem('Proteines', this.userMainData.data.keyData.proteinCount, 'g', icon_protein),
-                    userKeyDataGlu: new UserKeyDataItem('Glucides', this.userMainData.data.keyData.carbohydrateCount, 'g', icon_carbs),
-                    userKeyDataLipid: new UserKeyDataItem('Lipides', this.userMainData.data.keyData.lipidCount, 'g', icon_fat),
+                    userKeyDataCal: new UserKeyDataItem('Calories', this.userMainData.keyData.calorieCount, 'kCal', icon_calories),
+                    userKeyDataProt: new UserKeyDataItem('Proteines', this.userMainData.keyData.proteinCount, 'g', icon_protein),
+                    userKeyDataGlu: new UserKeyDataItem('Glucides', this.userMainData.keyData.carbohydrateCount, 'g', icon_carbs),
+                    userKeyDataLipid: new UserKeyDataItem('Lipides', this.userMainData.keyData.lipidCount, 'g', icon_fat),
                     
-                    userActivitySessions: this.userActivityData.data.sessions.map(session =>
+                    userActivitySessions: this.userActivityData.sessions.map(session =>
                         new ActivitySessionModel(session.day, session.kilogram, session.calories)),
 
-                    userLengthSessions: this.userSessionLengthData.data.sessions.map(session => 
+                    userLengthSessions: this.userSessionLengthData.sessions.map(session => 
                         new SessionLengthModel(session.day, session.sessionLength)),
 
-                    userPerformances: this.userPerfData.data.data.map(perf =>
+                    userPerformances: this.userPerfData.data.map(perf =>
                         new PerformanceModel(perf.value, perf.kind))
                 })
             }
