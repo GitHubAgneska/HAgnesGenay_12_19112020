@@ -38,7 +38,6 @@ const renderLegend = () => {
 }
 
 const UserSessionsLength = ({userLengthSessions}) => {
-    console.log(userLengthSessions);
     return (
         <Wrapper>
             <ResponsiveContainer>

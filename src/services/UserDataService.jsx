@@ -1,63 +1,55 @@
-
-import FetchDataService from '../services/FetchDataService';
 import {UserModel} from '../models/UserModel'
+import FetchDataService from '../services/FetchDataService'
 
-/*
-*   this service acts as a middleware between userProfile component
-*   and fetch service
-*   ----------------------------------------------------------------
+/**   @object UserDataService */
+/*  ----------------------------------------------------------------
 *  -> Retrieves id in URL (if none  default id is provided)
 *  -> Creates a new User from model 
-*  -> Checks if user is already in local storage (if not calls fetch service that will store it)
-*  -> Casts retrieved data into a user object
+*  -> Checks if user is already in local storage
+*  -> Casts retrieved data into a user object ( --- TO REVIEW : userProfile component should delegate the entire task to this service)
 *  -> return user object
 * */
-
 const UserDataService = {
     
-    setUpDataForUser: function() {
-
-
-            let location = window.location; let myStorage =  window.localStorage;
+    /** @function retrieveIdFromUrl */
+    /** @returns {number} userId*/
+    retrieveIdFromUrl: function() {
+        
+            let location = window.location;
             let defaultId = 12;
             let currentId = null;
+            let idInUrl = parseInt(location.pathname.split('/userProfile/')[1]); // console.log('ID URL===', parseInt(idInUrl))
+            idInUrl !== defaultId ? currentId = idInUrl : currentId = defaultId;
+            return currentId;
+    },
 
-            /** Method that retrieves ID from URL */
-            let getUserId = () => {
-                let idInUrl = location.pathname.split('/userProfile/')[1]; console.log('ID URL===', parseInt(idInUrl))
-                return idInUrl !== defaultId ? currentId = idInUrl : currentId = defaultId;
-            }
+    /** @function checkUserInStorage */
+    /** @param {number} userId */
+    /** @returns {boolean} */
+    checkUserInStorage: function(currentId) {
+        
+        let myStorage =  window.localStorage;
+        return myStorage.getItem(currentId)? true:false;
+        //  currentUser = JSON.parse(myStorage.getItem(currentId))
 
-            /** Call  getUserId method */
-            currentId = getUserId();
+    },
+    initFetchAndCache: function(currentId) {
+        FetchDataService.fetchData(currentId);
+    },
 
-            /** Create a new User from model */
-            let currentUser = new UserModel();
+    /** @function castUserDataIntoUserModel */
+    /** @param {Array} userDataFromPromiseAll*/
+    /** @returns {object} currentUser  */
+    castUserDataIntoUserModel: function(user) {
 
-            /** Check if user is already in local storage 
-             *  -> if yes : get data for this user into currentUser
-             *  -> else : call fetchDataService that will store new data for user with id
-             */
-            let checkUserInStorage = (currentId) => { return myStorage.getItem(currentId)? currentUser.allUserData = JSON.parse(myStorage.getItem(currentId)) : FetchDataService.fetchData(currentId)  }
-            /** Call method */
-            checkUserInStorage(currentId);
+        let currentUser = new UserModel();
 
-
-            /**  Method that maps data array from cache, to user object  */
-            let remapRawDataToObject = (currentUser) => { 
-                
-                currentUser.userMainData = currentUser.allUserData[0].data;
-                currentUser.userActivityData = currentUser.allUserData[1].data;;
-                currentUser.userPerfData = currentUser.allUserData[2].data;;
-                currentUser.userSessionLengthData = currentUser.allUserData[3].data;;
-                console.log('CURRENT USER AFTER REMAP==',currentUser )
-            }
-            /** Call method */
-            remapRawDataToObject(currentUser);
-
-            /** Return user object to component that requests it */
-            return currentUser;
-
+        currentUser.userMainData = user[0].data;
+        currentUser.userActivityData = user[1].data;
+        currentUser.userPerfData = user[2].data;
+        currentUser.userSessionLengthData = user[3].data;
+        // console.log('CURRENT USER AFTER REMAP==',currentUser )
+        return currentUser;
     }
 }
 export default UserDataService

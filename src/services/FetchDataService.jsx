@@ -1,29 +1,40 @@
 
 import { UserModel } from "../models/UserModel";
+import UserDataService from "./UserDataService";
 
 const apiBaseUrl = 'http://localhost:3000/user/';
 const myStorage = window.localStorage;
 class endpointModel { constructor(name, url, userId) { this.name = name; this.url = url; this.userId= userId;}}
 
-/** This is a description of the foo function. */
+
+/**   @object FetchDataService */
+/**   @param {number} userId - used by FetchDataService.fetchData() property */
+/**   @returns {void}  */
+/**  this service is in charge of getting data from the api / mock data
+*   ----------------------------------------------------------------
+*  -> called with user id
+*  -> uses user id to set up 4 endpoints
+*  -> uses Promise.all() to retrieve data from these 4 endpoints
+*  -> stores resolved data ( array of 4 objects ) into local storage with user id
+* */
 const FetchDataService = {
 
     clearStorage: function () { myStorage.clear() },
 
-    fetchData : function(userId) {
-       //  myStorage.clear()
-        let user = new UserModel();
-        user.userId = userId; console.log('USERID IN FETCH==', userId);
-       //  if (!userId) { userId = 12;}
+    fetchData : function() {
+
+        let userId = UserDataService.retrieveIdFromUrl();
+        let userInStorage = UserDataService.checkUserInStorage();
+        
         const endpoints = [
             new endpointModel('mainData', apiBaseUrl + userId),
             new endpointModel('activityData', apiBaseUrl + userId + '/activity'),
             new endpointModel('sessionsLengthData', apiBaseUrl + userId + '/average-sessions'),
             new endpointModel('performanceData', apiBaseUrl + userId + '/performance')
         ];
-            // console.log('ENDPOINTS==',endpoints);
-            let requests = endpoints.map( endpoint => fetch(endpoint.url) );
-            //console.log('requests==',requests);
+        let requests = endpoints.map( endpoint => fetch(endpoint.url) );
+        
+        if ( !userInStorage) { 
             try {
                 Promise.all(requests)
                     .then(responses => {
@@ -38,28 +49,14 @@ const FetchDataService = {
                     .then(data => { // returns an ARRAY
                         console.log('data at fetch all==', data);
                         console.log('ID======>', data[0].data.id);
-                        
-                        myStorage.setItem(user.userId, JSON.stringify(data))
-
-                      /*   user.userMainData = Object.assign(user.userMainData, data[0].data);
-                        user.userActivityData = data[1].data;
-                        user.userSessionLengthData = data[2].data;
-                        user.userPerfData = data[3].data;
-
-                        user.allUserData.push(user.userMainData,user.userActivityData,user.userSessionLengthData, user.userPerfData );
-                        //console.log('allUserData==', user.allUserData)
-                        myStorage.setItem(user.userId, JSON.stringify(user.allUserData)); */
-     /*                    Object.assign(user.allUserDataObject, user.userMainData );
-                        Object.assign(user.allUserDataObject, user.userActivityData );
-                        Object.assign(user.allUserDataObject, user.userSessionLengthData );
-                        Object.assign(user.allUserDataObject, user.userPerfData );
-                        console.log('USER DATA OBJECT=',user.allUserDataObject);
-
-                        myStorage.setItem(user.userId, JSON.stringify(user.allUserDataObject)); */
+    
+                        myStorage.setItem(userId, JSON.stringify(data));
                     })
             }
             catch(error) { console.log(error) }
-        }    
+        
+        } else { return userId }
+    } 
 }
 export default FetchDataService
 

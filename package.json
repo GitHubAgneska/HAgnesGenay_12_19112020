@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@types/prop-types": "^15.7.4",
-    "@types/react": "^17.0.19"
+    "@types/react": "^17.0.19",
+    "lodash": "^4.17.21"
   }
 }

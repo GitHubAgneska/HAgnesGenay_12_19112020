@@ -8,16 +8,23 @@ import UserScore from '../elements/UserScore';
 import UserSessionsLength from '../elements/UserSessionsLength';
 
 import UserDataService from '../../services/UserDataService'
+import FetchDataService from '../../services/FetchDataService'
 import { MainWrapper, SectionA, SectionB, SectionC, SectionD } from '../../style/userProfile_style'
 
+
+FetchDataService.fetchData();
 
 export default class UserProfile extends React.Component { 
         
         constructor(props){
             super(props);
-            
+            this.storage = window.localStorage;
+            this.userId = UserDataService.retrieveIdFromUrl();
+            this.user = JSON.parse(this.storage.getItem(this.userId));console.log('USER===', this.user)
+            this.currentUser = UserDataService.castUserDataIntoUserModel(this.user);
+
             this.state = {
-                    userId: null, userFirstName: '', userLastName: '', userAge: null, userScore: null, introSentence: '',
+                    userId: this.userId, userFirstName: '', userLastName: '', userAge: null, userScore: null, introSentence: '',
                     userKeyData: [], userKeyDataCal: {}, userKeyDataProt: {}, userKeyDataGlu: {}, userKeyDataLipid: {},
                     userActivitySessions:[], userActSession: {},
                     userLengthSessions: [],userLengthSession:{},                    
@@ -26,31 +33,29 @@ export default class UserProfile extends React.Component {
             }
 
             componentDidMount() {
-                let currentUser = UserDataService.setUpDataForUser();
-                /* console.log('CURRENT USER++',currentUser); */
-                this.setState({
-                    userId: currentUser.userMainData.id,
-                    userFirstName: currentUser.userMainData.userInfos.firstName,
-                    userLastName: currentUser.userMainData.userInfos.lastName,
-                    userAge: currentUser.userMainData.userInfos.age,
-                    userScore: currentUser.userMainData.score ||   currentUser.userMainData.todayScore,
-                    introSentence:  makeIntroSentence( currentUser.userMainData.score || currentUser.userMainData.todayScore),
 
-                    userKeyDataCal: new UserKeyDataItem('Calories', currentUser.userMainData.keyData.calorieCount, 'kCal', 'icon_calories'),
-                    userKeyDataProt: new UserKeyDataItem('Proteines', currentUser.userMainData.keyData.proteinCount, 'g', 'icon_protein'),
-                    userKeyDataGlu: new UserKeyDataItem('Glucides', currentUser.userMainData.keyData.carbohydrateCount, 'g', 'icon_carbs'),
-                    userKeyDataLipid: new UserKeyDataItem('Lipides', currentUser.userMainData.keyData.lipidCount, 'g', 'icon_fat'),
+                // console.log('CURRENT USER++',this.currentUser);
+
+                this.setState({
+                    userId: this.userId,
+                    userFirstName: this.currentUser.userMainData.userInfos.firstName,
+                    userLastName: this.currentUser.userMainData.userInfos.lastName,
+                    userAge: this.currentUser.userMainData.userInfos.age,
+                    userScore: this.currentUser.userMainData.score ||   this.currentUser.userMainData.todayScore,
+                    introSentence:  makeIntroSentence( this.currentUser.userMainData.score || this.currentUser.userMainData.todayScore),
+
+                    userKeyDataCal: new UserKeyDataItem('Calories', this.currentUser.userMainData.keyData.calorieCount, 'kCal', 'icon_calories'),
+                    userKeyDataProt: new UserKeyDataItem('Proteines', this.currentUser.userMainData.keyData.proteinCount, 'g', 'icon_protein'),
+                    userKeyDataGlu: new UserKeyDataItem('Glucides', this.currentUser.userMainData.keyData.carbohydrateCount, 'g', 'icon_carbs'),
+                    userKeyDataLipid: new UserKeyDataItem('Lipides', this.currentUser.userMainData.keyData.lipidCount, 'g', 'icon_fat'),
                     
-                    // object.
-                    userActivitySessions: currentUser.userActivityData.sessions.map(session =>
+                    userActivitySessions: this.currentUser.userActivityData.sessions.map(session =>
                         new ActivitySessionModel(session.day, session.kilogram, session.calories)),
                     
-                    // object.sessions
-                    userLengthSessions: currentUser.userSessionLengthData.data.map(session => 
+                    userLengthSessions: this.currentUser.userSessionLengthData.data.map(session => 
                         new SessionLengthModel(session.day, session.sessionLength)),
                     
-                    // object.data
-                    userPerformances:  currentUser.userPerfData.sessions.map(perf =>
+                    userPerformances: this.currentUser.userPerfData.sessions.map(perf =>
                         new PerformanceModel(perf.value, perf.kind))
                 })
             }
