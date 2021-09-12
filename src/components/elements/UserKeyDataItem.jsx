@@ -1,5 +1,9 @@
 import PropTypes from "prop-types"
 import styled from "styled-components"
+import icon_calories from '../../assets/icons/icon_calories.png';
+import icon_protein from '../../assets/icons/icon_protein.png';
+import icon_carbs from '../../assets/icons/icon_carbs.png';
+import icon_fat from '../../assets/icons/icon_fat.png';
 
 const KeyitemWrapper = styled.div `
     height:125px;

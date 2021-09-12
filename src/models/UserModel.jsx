@@ -6,6 +6,7 @@ export class UserModel {
         this.userPerfData = userPerfData;
         this.userSessionLengthData = userSessionLengthData;
         this.allUserData = [];
+        this.allUserDataObject = {};
     }
 }
 
