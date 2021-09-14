@@ -7,7 +7,9 @@ import icon_fat from '../../assets/icons/icon_fat.png';
 
 const KeyitemWrapper = styled.div `
     height:125px;
-    display: flex; justify-content:center; align-items:center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
     background-color: #FBFBFB;
 `;
 const Keyitem = styled.div `
@@ -29,7 +31,7 @@ const KeyItemIcon = styled.img `
 
 const UserKeyDataItem = (props) => {
     
-    console.log('keyData IN CHILD==', props.data)
+    // console.log('keyData IN CHILD==', props.data)
     return(
         <KeyitemWrapper>
             <Keyitem>
@@ -45,7 +47,6 @@ const UserKeyDataItem = (props) => {
                         :  <KeyItemIcon src={icon_fat} alt="" />
                 }
 
-                {/*  <img src={require(`${props.data.keyDataIcon}`)} alt="" /> */}
                 <KeyItemText>
                     <h1 style={{margin:0}}>{props.data.keyDataValue}{props.data.keyDataUnit}</h1>
                     <h2 style={{margin:0, fontSize:"12px" }}>{props.data.keyDataType}</h2>
