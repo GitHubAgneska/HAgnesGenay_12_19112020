@@ -102,8 +102,8 @@ const UserActivity = ({userActivitySessions}) => {
                 <BarChart barSize={8} data={userActivitySessions} >
 
                     <CartesianGrid
-                        vertical = {false}
-                        strokeDasharray = "4 2"
+                        vertical={false}
+                        strokeDasharray="4 2"
                     />
                     <XAxis 
                         dataKey={getDay}
@@ -115,23 +115,25 @@ const UserActivity = ({userActivitySessions}) => {
                         dataKey="kilogram"  
                         domain={['dataMin-1', 'dataMax+1']}
                         orientation="right" 
-                        tickCount="6" 
-                        allowDecimals={false}  
                         tickLine={false}
-                        dx = {28}
+                        tickCount="5"
+                        allowDecimals={false}  
+                        dx={20}
                     />
                     <YAxis
                         yAxisId = "calories"
                         dataKey = "calories"
+                        allowDecimals={false}  
                         hide = {true}
-                        domain = {[0, "dataMax -250"]}
+                        tickLine={false}
+                        domain = {[0, 'dataMax-25']}
                     />
 
                     {/* <ReferenceLine y="70" stroke="grey" strokeDasharray="3 3" /> */}
                     {/* <Legend content={renderLegend} verticalAlign="top" height={40} align="right" iconType="circle" iconSize="10"/> */}
                     {/*  <Legend verticalAlign="top" height={40} align="right" iconType="circle" iconSize="10" /> */}
                     <Bar dataKey="kilogram" fill="black" radius={[50, 50, 0, 0]} />
-                    <Bar dataKey="calories"  yAxisId = "calories" fill="red" radius={[50, 50, 0, 0]}  />
+                    <Bar dataKey="calories"  yAxisId="calories" fill="red" radius={[50, 50, 0, 0]}  />
                     {/* <Tooltip content={<CustomTooltip />} cursor={<CustomizedCursor />}/> */}
                     <Tooltip content={<CustomTooltip />} cursor={{ opacity:'0.5', zIndex:'-9' }} />
                 </BarChart>

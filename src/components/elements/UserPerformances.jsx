@@ -6,6 +6,7 @@ const Wrapper = styled.section`
     background-color: black;
     height:100%;
     width: 100%;
+    max-width: 30%;
 `;
 
 const UserPerformances = ({userPerformances}) => {

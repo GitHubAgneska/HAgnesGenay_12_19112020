@@ -14,13 +14,14 @@ const KeyitemWrapper = styled.div `
 `;
 const Keyitem = styled.div `
     /* border: 1px solid pink; */
-    height:60px;width:195px;
+    height:60px; width:195px;
     display: flex;
     flex-direction: row nowrap;
-    align-items: center;
-    justify-content: center;
+    align-items: center; 
 `;
-const KeyItemText = styled.div``;
+const KeyItemText = styled.div`
+    margin-left:3%;
+`;
 
 const KeyItemIcon = styled.img `
     height:100%;
@@ -48,8 +49,8 @@ const UserKeyDataItem = (props) => {
                 }
 
                 <KeyItemText>
-                    <h1 style={{margin:0}}>{props.data.keyDataValue}{props.data.keyDataUnit}</h1>
-                    <h2 style={{margin:0, fontSize:"12px" }}>{props.data.keyDataType}</h2>
+                    <h1 style={{margin:0, fontWeight:"700", fontSize:"22px"}}>{props.data.keyDataValue}{props.data.keyDataUnit}</h1>
+                    <h2 style={{margin:"5% 0%", fontSize:"14px", color:"grey" }}>{props.data.keyDataType}</h2>
                 </KeyItemText>
             </Keyitem>
         </KeyitemWrapper>

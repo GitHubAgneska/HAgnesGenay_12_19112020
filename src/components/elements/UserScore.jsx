@@ -12,6 +12,7 @@ const Wrapper = styled.section `
     padding:5%;
     height:100%;
     width: 100%;
+    max-width: 30%;
 `;
 
 const UserScore = ({userScore}) => {
@@ -20,7 +21,7 @@ const UserScore = ({userScore}) => {
     const RADIAN = Math.PI / 180;
     
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-/*      const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+     /* const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN); */
 
@@ -40,7 +41,7 @@ const UserScore = ({userScore}) => {
     };
     const renderLegend = () => {
         return (
-            <p style={{color:'grey', width:'60%', fontSize:'15px', marginTop:'0'}}>Score</p>
+            <p style={{color:'grey', width:'60%', fontSize:'15px', fontWeight:'500', marginTop:'0'}}>Score</p>
         );
     }
 

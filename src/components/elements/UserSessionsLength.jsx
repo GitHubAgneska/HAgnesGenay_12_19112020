@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import { ResponsiveContainer, LineChart, Line, Area, ReferenceArea, CartesianGrid, XAxis, YAxis, Tooltip,Legend} from "recharts"
+import { ResponsiveContainer, LineChart, Line, ReferenceArea, XAxis, Legend, Tooltip} from "recharts"
 import styled from "styled-components"
 
 const Wrapper = styled.section`
@@ -10,6 +10,7 @@ const Wrapper = styled.section`
     padding: 10px 0px;
     height:100%;
     width: 100%;
+    max-width: 30%;
 `;
 const CustomTooltipClass = {
     width:"40px",
