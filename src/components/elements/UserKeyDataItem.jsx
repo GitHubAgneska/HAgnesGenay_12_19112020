@@ -13,7 +13,10 @@ const KeyitemWrapper = styled.div `
 const Keyitem = styled.div `
     /* border: 1px solid pink; */
     height:60px;width:195px;
-    display: flex; flex-direction: row nowrap;
+    display: flex;
+    flex-direction: row nowrap;
+    align-items: center;
+    justify-content: center;
 `;
 const KeyItemText = styled.div``;
 
@@ -26,11 +29,22 @@ const KeyItemIcon = styled.img `
 
 const UserKeyDataItem = (props) => {
     
-    // console.log('keyData IN CHILD==', props.data)
+    console.log('keyData IN CHILD==', props.data)
     return(
         <KeyitemWrapper>
             <Keyitem>
-                <KeyItemIcon src={props.data.keyDataIcon} alt="" />
+
+                { props.data.keyDataType === 'Calories' ? 
+                    <KeyItemIcon src={icon_calories} alt="" />
+                    : 
+                    props.data.keyDataType === 'Proteines' ?
+                        <KeyItemIcon src={icon_protein} alt="" />
+                        :  props.data.keyDataType === 'Glucides' ?
+                        <KeyItemIcon src={icon_carbs} alt="" />
+                
+                        :  <KeyItemIcon src={icon_fat} alt="" />
+                }
+
                 {/*  <img src={require(`${props.data.keyDataIcon}`)} alt="" /> */}
                 <KeyItemText>
                     <h1 style={{margin:0}}>{props.data.keyDataValue}{props.data.keyDataUnit}</h1>

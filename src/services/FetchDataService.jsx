@@ -38,9 +38,7 @@ const FetchDataService = {
                         console.log(response.status)
                         : console.log('error response:', response.status)
                     }
-                    console.log('responses', responses)
                     return responses;
-                    
                 })
                 .then(responses => Promise.all(responses.map(r => r.json())))
                 .then(data => { // returns an ARRAY

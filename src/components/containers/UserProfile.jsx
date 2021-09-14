@@ -37,15 +37,15 @@ export default class UserProfile extends React.Component {
             componentDidMount() {
                 this.currentUser = new UserModel();
 
-                //FetchDataService.fetchData().then(data => { 
-                    //this.user = data; // console.log(this.user);
-                    // this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
+                FetchDataService.fetchData().then(data => { 
+                    this.user = data; // console.log(this.user);
+                    this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
                     // console.log(' this.currentUser==',  this.currentUser);
 
 
-                FetchMockDataService.fetchData().then(data => { 
-                    this.user = data; // console.log(this.user);
-                    this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
+                //FetchMockDataService.fetchData().then(data => { 
+                    //this.user = data; // console.log(this.user);
+                    //this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
                     // console.log(' this.currentUser==',  this.currentUser);
                     
                     this.setState({
