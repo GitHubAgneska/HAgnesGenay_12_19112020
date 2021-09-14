@@ -16,16 +16,17 @@ const UserPerformances = ({userPerformances}) => {
             <ResponsiveContainer width="100%" height="100%">
                     <RadarChart  
                         data={userPerformances}
-                        outerRadius={100} 
-                        width={730} 
-                        height={250} 
+                        outerRadius={78} 
+                        width={258} 
+                        height={258} 
                     >
                         <PolarGrid stroke="white" />
                         <PolarAngleAxis
                             dataKey="kind" 
                             axisLine={false} 
                             tickLine={false}  
-                            style={{ fontSize: '80%', fill: 'rgba(255, 255, 255, 0.87)'}}
+                            style={{ fontSize: '80%',fontWeight:'500', fill: 'rgba(255, 255, 255, 0.87)'}}
+                            
                         />
                         <Radar 
                             name="" 
