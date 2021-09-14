@@ -1,0 +1,38 @@
+[
+    {
+        "12": {
+            "data": {
+                "userInfos": {
+                    "firstName": "Karl",
+                    "lastName": "Dovineau",
+                    "age": 31,
+                },
+                "keyData": {
+                    "calorieCount": 1930,
+                    "proteinCount": 155,
+                    "carbohydrateCount": 290,
+                    "lipidCount": 50
+                },
+                "score": 0.12
+            }
+        }
+    },
+    {
+        "18": {
+            "data": {
+                "userInfos": {
+                    "firstName": "Cecilia",
+                    "lastName": "Ratorez",
+                    "age": 34
+                },
+                "keyData": {
+                    "calorieCount": 2500,
+                    "proteinCount": 90,
+                    "carbohydrateCount": 150,
+                    "lipidCount": 120
+                },
+                "score": 0.3
+            }
+        }
+    }
+]

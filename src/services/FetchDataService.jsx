@@ -1,10 +1,16 @@
-
 import UserDataService from "./UserDataService";
 
+
 const apiBaseUrl = 'http://localhost:3000/user/';
+const apiMockBaseUrl = "../mockData/";
+// "../mockData/ mainData"; // --/user/12
+// "../mockData/ activity";  // -- /user/18/activity
+// "../mockData/ performance";  // --/user/18/performance
+// "../mockData/ average-sessions"; // --/user/18/average-sessions
+let findUserDataWithId = (id) => { }
 
 class endpointModel { constructor(name, url, userId) { this.name = name; this.url = url; this.userId= userId;}}
-let user = {id:null, data:[]};
+let localUser = {id:null, data:[]};
 
 /**   @object FetchDataService */
 /**   @returns {Promise} user object  */
@@ -20,13 +26,19 @@ const FetchDataService = {
     fetchData : function() {
 
         let userId = UserDataService.retrieveIdFromUrl();
-        user.id = userId;
+        localUser.id = userId;
 
         const endpoints = [
             new endpointModel('mainData', apiBaseUrl + userId),
             new endpointModel('activityData', apiBaseUrl + userId + '/activity'),
             new endpointModel('sessionsLengthData', apiBaseUrl + userId + '/average-sessions'),
             new endpointModel('performanceData', apiBaseUrl + userId + '/performance')
+        ];
+        const mockEndpoints = [
+            new endpointModel('mainData', apiMockBaseUrl + userId),
+            new endpointModel('activityData', apiMockBaseUrl + userId + '/activity'),
+            new endpointModel('sessionsLengthData', apiMockBaseUrl + userId + '/average-sessions'),
+            new endpointModel('performanceData', apiMockBaseUrl + userId + '/performance')
         ];
         let requests = endpoints.map( endpoint => fetch(endpoint.url) );
 
@@ -44,8 +56,8 @@ const FetchDataService = {
                 .then(data => { // returns an ARRAY
                     // console.log('data at fetch all==', data);
                     // console.log('ID======>', data[0].data.id);
-                    user.data = data
-                    return user
+                    localUser.data = data
+                    return localUser
                 })
                 .catch(error => console.log(error.type) ) 
         )
