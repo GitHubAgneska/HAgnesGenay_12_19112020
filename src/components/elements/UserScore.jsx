@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import { Fragment } from "react";
-import { PieChart, Pie, Sector,Legend, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Legend, Cell, ResponsiveContainer } from 'recharts';
 import styled from "styled-components"
 
 const Wrapper = styled.section `
@@ -17,11 +17,10 @@ const Wrapper = styled.section `
 const UserScore = ({userScore}) => {
     // console.log('score==',userScore )
     const data = [ { name: 'Score', value: userScore*100 } ];
-    const COLOR = 'red';
     const RADIAN = Math.PI / 180;
     
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-/*         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+/*      const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN); */
 
@@ -50,6 +49,7 @@ const UserScore = ({userScore}) => {
             <ResponsiveContainer>
                     <PieChart width={800} height={400}>
                         <Pie 
+                            dataKey="value"
                             data={data}
                             label={renderCustomizedLabel}
                             labelLine={false}
@@ -61,9 +61,13 @@ const UserScore = ({userScore}) => {
                             outerRadius={82}
                             paddingAngle={5}
                             cornerRadius={40}
-                            dataKey="value">
+                        >
                             { data.map((entry, index) => (
-                                <Cell key={ `cell-${index}` } fill={COLOR} radius={[50, 50, 50, 50]}/> )) } 
+                                <Cell 
+                                    key={`cell-${index}`}
+                                    stroke = "transparent"
+                                    fill='red'
+                                    radius={[50, 50, 50, 50]}/> )) } 
                         </Pie>
                         <Legend verticalAlign="top" align="left" content={renderLegend} />
                                 
