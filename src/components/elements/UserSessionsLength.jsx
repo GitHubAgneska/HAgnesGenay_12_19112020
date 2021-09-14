@@ -12,10 +12,10 @@ const Wrapper = styled.section`
     width: 100%;
 `;
 const CustomTooltipClass = {
-    width:"50px",
-    height:"50px",
+    width:"40px",
+    height:"30px",
     backgroundColor:"white",
-    color:"grey", padding:"10%",
+    color:"grey", padding:"5%",textAlign:"center",
     fontSize:"10px", fontWeight:"bold"
 } 
 
@@ -41,12 +41,37 @@ const UserSessionsLength = ({userLengthSessions}) => {
     return (
         <Wrapper>
             <ResponsiveContainer>
-                <LineChart width={400} height={250} data={userLengthSessions} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <XAxis axisLine={false} dataKey="day" tickLine={false} style={{fill:'white', opacity:'0.7'}} />
+                <LineChart 
+                    data={userLengthSessions} 
+                    width={400} 
+                    height={250}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
+                    <Legend 
+                        verticalAlign="top" 
+                        content={renderLegend} 
+                    />
+                    <XAxis 
+                        axisLine={false} 
+                        dataKey="day" 
+                        tickLine={false} 
+                        style={{fill:'white', opacity:'0.7'}} 
+                    />
                     <Tooltip content={<CustomTooltip />} /* cursor={{ stroke: 'grey', strokeWidth: 5 }} */  cursor={{height:'100%' }}/>
-                    <Legend  verticalAlign="top" content={renderLegend} />
-                    <Line dot={false} type="natural" dataKey="sessionLength" stroke="#fff" />
-                    <ReferenceArea x1={150} x2={180} y1={200} y2={300} stroke="black" strokeOpacity={0.3} />
+                    <Line 
+                        dataKey="sessionLength"
+                        type="natural" 
+                        dot={false} 
+                        stroke="#fff"
+                    />
+                    <ReferenceArea 
+                        x1={150} 
+                        x2={180} 
+                        y1={200} 
+                        y2={300} 
+                        stroke="black" 
+                        strokeOpacity={0.3} 
+                    />
                 </LineChart>
             </ResponsiveContainer>
         </Wrapper>
