@@ -1,8 +1,9 @@
 import UserDataService from "./UserDataService";
 
-const apiBaseUrl = 'http://localhost:3000/user/';
-class endpointModel { constructor(name, url, userId) { this.name = name; this.url = url; this.userId= userId;}}
+const apiMockPath = "../mockData/";
+class endpointModel { constructor(name, url, userId) { this.name = name; this.url = url; this.userId = userId;}}
 let localUser = {id:null, data:[]};
+let findUserDataWithId = (id) => { }
 
 /**   @object FetchDataService */
 /**   @returns {Promise} user object  */
@@ -13,47 +14,48 @@ let localUser = {id:null, data:[]};
 *  -> uses Promise.all() to retrieve data from these 4 endpoints
 *  -> returns Promise user object
 * */
-const FetchDataService = {
+const FetchMockDataService = {
 
     fetchData : function() {
 
         let userId = UserDataService.retrieveIdFromUrl();
         localUser.id = userId;
 
-        const endpoints = [
-            new endpointModel('mainData', apiBaseUrl + userId), // "../mockData/ mainData"; // --/user/12
-            new endpointModel('activityData', apiBaseUrl + userId + '/activity'),
-            new endpointModel('sessionsLengthData', apiBaseUrl + userId + '/average-sessions'),
-            new endpointModel('performanceData', apiBaseUrl + userId + '/performance')
+        const mockEndpoints = [
+            new endpointModel('mainData', apiMockPath + 'mainData.json'),// "../mockData/ mainData + /12 "; // --/user/12
+            new endpointModel('activityData', apiMockPath + 'activity.json'),// "../mockData/ activity";  // -- /user/18/activity
+            new endpointModel('sessionsLengthData', apiMockPath + 'average-sessions.json'),
+            new endpointModel('performanceData', apiMockPath + 'performance.json')
         ];
 
-        let requests = endpoints.map( endpoint => fetch(endpoint.url) );
+        let requestsToMockApi = mockEndpoints.map( endpoint => fetch(endpoint.url, { headers : { 'Content-Type': 'application/json', 'Accept': 'application/json' }}))
+        // console.log('requestsToMockApi==', requestsToMockApi)
 
         return (
-
-            Promise.all(requests)
+            Promise.all(requestsToMockApi)
+            //Promise.all(requests)
                 .then(responses => {
                     for ( let response of responses ) {
                         response.status === 200 ? 
                         console.log(response.status)
                         : console.log('error response:', response.status)
                     }
-                    console.log('responses', responses)
                     return responses;
                     
                 })
                 .then(responses => Promise.all(responses.map(r => r.json())))
                 .then(data => { // returns an ARRAY
-                    // console.log('data at fetch all==', data);
+                    console.log('MOCK data at fetch all==', data); // array of : 4 arrays of 2 objects each
                     // console.log('ID======>', data[0].data.id);
-                    localUser.data = data
+                    localUser.data = data;
+                    console.log('localUser==', localUser)
                     return localUser
                 })
                 .catch(error => console.log(error.type) ) 
         )
     } 
 }
-export default FetchDataService
+export default FetchMockDataService
 
 
 
