@@ -14,14 +14,12 @@ import FetchMockDataService from '../../services/FetchMockDataService'
 import { MainWrapper, SectionA, SectionB, SectionC, SectionD } from '../../style/userProfile_style'
 
 
-
 export default class UserProfile extends React.Component { 
         
         constructor(props){
             super(props);
     
             this.userId = UserDataService.retrieveIdFromUrl();
-            
             this.user = {};
             this.currentUser = new UserModel();
         
@@ -37,17 +35,17 @@ export default class UserProfile extends React.Component {
             componentDidMount() {
                 this.currentUser = new UserModel();
 
-                FetchDataService.fetchData().then(data => { 
-                    this.user = data; // console.log(this.user);
-                    this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
-                    // console.log(' this.currentUser==',  this.currentUser);
+                // FETCH FROM API or FROM MOCK DATA .....................................................
+                /* FetchDataService.fetchData().then(data => { 
+                    this.user = data;
+                    this.currentUser = UserDataService.castUserDataIntoUserModel(data.data); */
 
-
-                //FetchMockDataService.fetchData().then(data => { 
-                    //this.user = data; // console.log(this.user);
-                    //this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
-                    // console.log(' this.currentUser==',  this.currentUser);
+                FetchMockDataService.fetchData().then(data => {
+                    this.user = data;
+                    this.currentUser = UserDataService.castUserMockDataIntoUserModel(this.user);
                     
+                // ......................................................................................
+
                     this.setState({
 
                         userId: this.userId,
@@ -68,7 +66,7 @@ export default class UserProfile extends React.Component {
                         userLengthSessions: this.currentUser.userSessionLengthData.map(session => 
                             new SessionLengthModel(session.day, session.sessionLength)),
                         
-                        userPerformances: this.currentUser.userPerfData.data.map(perf =>
+                        userPerformances: this.currentUser.userPerfData.map(perf =>
                             new PerformanceModel(perf.value, perf.kind))
                     })
                     
