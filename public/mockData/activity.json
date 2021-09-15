@@ -62,38 +62,53 @@
             "sessions": [
                 {
                     "day": "2020-08-01",
-                    "kilogram": 65,
-                    "calories": 240
+                    "kilogram": 64,
+                    "calories": 180
                 },
                 {
                     "day": "2020-08-02",
                     "kilogram": 65,
-                    "calories": 240
+                    "calories": 230
                 },
                 {
                     "day": "2020-08-03",
-                    "kilogram": 65,
-                    "calories": 240
+                    "kilogram": 64,
+                    "calories": 190
                 },
                 {
                     "day": "2020-08-04",
                     "kilogram": 65,
-                    "calories": 240
+                    "calories": 220
                 },
                 {
                     "day": "2020-08-05",
-                    "kilogram": 65,
-                    "calories": 240
+                    "kilogram": 66,
+                    "calories": 180
                 },
                 {
                     "day": "2020-08-06",
                     "kilogram": 65,
-                    "calories": 240
+                    "calories": 178
                 },
                 {
                     "day": "2020-08-07",
                     "kilogram": 65,
-                    "calories": 240
+                    "calories": 150
+                },
+                {
+                    "day": "2020-08-08",
+                    "kilogram": 64,
+                    "calories": 130
+                },
+                {
+                    "day": "2020-08-09",
+                    "kilogram": 64,
+                    "calories": 155
+                },
+                {
+                    "day": "2020-08-10",
+                    "kilogram": 64,
+                    "calories": 180
                 }
             ]
         }
