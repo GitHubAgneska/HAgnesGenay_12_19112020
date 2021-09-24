@@ -26,11 +26,11 @@ const FetchDataService = {
             new endpointModel('sessionsLengthData', apiBaseUrl + userId + '/average-sessions'),
             new endpointModel('performanceData', apiBaseUrl + userId + '/performance')
         ];
-
+        // MAKE AN ARRAY OF PROMISES
         let requests = endpoints.map( endpoint => fetch(endpoint.url) );
 
         return (
-
+            // Promise.all() takes the array of promises
             Promise.all(requests)
                 .then(responses => {
                     for ( let response of responses ) {
@@ -40,9 +40,11 @@ const FetchDataService = {
                     }
                     return responses;
                 })
+                // then returns a new Promise that resolves when all listed Promises are resolved
                 .then(responses => Promise.all(responses.map(r => r.json())))
+                // the array of all resolved promises becomes the result
                 .then(data => { // returns an ARRAY
-                    // console.log('data at fetch all==', data);
+                    console.log('data at fetch all API ==', data);
                     // console.log('ID======>', data[0].data.id);
                     localUser.data = data
                     return localUser

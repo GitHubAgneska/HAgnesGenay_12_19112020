@@ -16,12 +16,13 @@ export function makeIntroSentence(score) {
             : sentence
 }
 
-var emoji = String.fromCodePoint(0x1F621)
+let emojiAngry = String.fromCodePoint(0x1F621);
+let emojiCool = String.fromCodePoint(parseInt('1f61b', 16));
 
 const introSentences = [
-    'Félicitations, vous avez explosé vos objectifs hier' + emoji ,
-    'Vous êtes sur la bonne voie '+ emoji ,
-    'Ne vous découragez pas '+ emoji 
+    'Félicitations, vous avez explosé vos objectifs hier' + emojiCool ,
+    'Vous êtes sur la bonne voie '+ emojiCool ,
+    'Ne vous découragez pas '+ emojiCool 
 ]
 
 export class UserKeyDataModel {

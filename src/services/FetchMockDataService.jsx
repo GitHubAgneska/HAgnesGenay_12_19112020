@@ -26,12 +26,14 @@ const FetchMockDataService = {
             new endpointModel('sessionsLengthData', apiMockPath + 'average-sessions.json'),
             new endpointModel('performanceData', apiMockPath + 'performance.json')
         ];
-
+        // MAKE AN ARRAY OF PROMISES
         let requestsToMockApi = mockEndpoints.map( endpoint => fetch(endpoint.url, { headers : { 'Content-Type': 'application/json', 'Accept': 'application/json' }}))
         // console.log('requestsToMockApi==', requestsToMockApi)
 
         return (
+            // Promise.all() takes the array of promises
             Promise.all(requestsToMockApi)
+                // then returns a new Promise that resolves when all listed Promises are resolved
                 .then(responses => {
                     for ( let response of responses ) {
                         response.status === 200 ? 
@@ -41,6 +43,7 @@ const FetchMockDataService = {
                     return responses;
                 })
                 .then(responses => Promise.all(responses.map(r => r.json())) )
+                // the array of all resolved promises becomes the result
                 .then( data => { 
                     // console.log('all data at fecth mock ===', data)
                     let users = data;

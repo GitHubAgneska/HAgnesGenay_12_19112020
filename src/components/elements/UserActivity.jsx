@@ -125,6 +125,7 @@ const UserActivity = ({userActivitySessions}) => {
                         dataKey = "calories"
                         allowDecimals={false}  
                         hide = {true}
+                        /* hide = {false} */
                         tickLine={false}
                         domain = {[0, 'dataMax-25']}
                     />

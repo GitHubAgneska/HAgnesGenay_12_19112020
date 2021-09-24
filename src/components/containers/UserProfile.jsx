@@ -36,13 +36,14 @@ export default class UserProfile extends React.Component {
                 this.currentUser = new UserModel();
 
                 // FETCH FROM API or FROM MOCK DATA .....................................................
-                /* FetchDataService.fetchData().then(data => { 
+                
+                FetchDataService.fetchData().then(data => { 
+                    this.user = data; console.log('USER DATA COMING FROM PROMISE.ALL=>', this.user);
+                    this.currentUser = UserDataService.castUserDataIntoUserModel(data.data);
+                    
+                /* FetchMockDataService.fetchData().then(data => {
                     this.user = data;
-                    this.currentUser = UserDataService.castUserDataIntoUserModel(data.data); */
-
-                FetchMockDataService.fetchData().then(data => {
-                    this.user = data;
-                    this.currentUser = UserDataService.castUserMockDataIntoUserModel(this.user);
+                    this.currentUser = UserDataService.castUserMockDataIntoUserModel(this.user); */
                     
                 // ......................................................................................
 
@@ -66,8 +67,13 @@ export default class UserProfile extends React.Component {
                         userLengthSessions: this.currentUser.userSessionLengthData.map(session => 
                             new SessionLengthModel(session.day, session.sessionLength)),
                         
-                        userPerformances: this.currentUser.userPerfData.map(perf =>
+                        //  ! TO USE WITH API FETCH -----
+                        userPerformances: this.currentUser.userPerfData.data.map(perf =>
                             new PerformanceModel(perf.value, perf.kind))
+                        
+                        //  ! TO USE WITH MOCK FETCH -----
+                        /* userPerformances: this.currentUser.userPerfData.map(perf =>
+                            new PerformanceModel(perf.value, perf.kind)) */
                     })
                     
                 });
