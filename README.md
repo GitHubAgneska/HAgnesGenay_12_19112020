@@ -1,41 +1,35 @@
-##  Développer un tableau de bord d'analytics avec React
+#  React analytics dashboard
 
-1. [Cahier des charges (fr)](#CAHIER-DES-CHARGES)
-2. [Installation steps and prerequisites (en)](#INSTALLATION-STEPS-AND-PREREQUISITES)
-
-***
-
-## CAHIER DES CHARGES
-
-### CONTEXTE
-
-#### Développer une page de profil pour une application sportive avec React :
-
-##### Contraintes :
-- Respecter les [users stories](https://www.notion.so/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e).
-- Utiliser D3 ou Recharts pour intégrer les graphiques.
-- Développer pour Desktop (1440 x 1080).
-- Réaliser des calls HTTP sur le backend.
-- Réaliser les calls avec Fetch ou Axios.
-- Réaliser les calls en dehors des composants Reacts.
-- Rédiger la documention en anglais (voir 2.).
-- Documenter chaque fonction et méthode.
-
-#### TECHNOLOGIES UTILISÉES
-- HTML5.
-- CSS3.
-- Javascript.
-- ESLinter.
-- Prettier.
-- React.
-- React Router.
-- Recharts.
-- Create React App.
-- Visual Studio Code.
+1. [Specifications](#SPECIFICATIONS)
+2. [Installation and prerequisites](#INSTALLATION-AND-PREREQUISITES)
 
 ***
 
-## INSTALLATION STEPS AND PREREQUISITES
+## SPECIFICATIONS
+
+### CONTEXT
+
+#### Develop a user profile page for a sports performance app with React
+
+##### Requirements :
+- Use [users stories](https://www.notion.so/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e)
+- Use D3 or Recharts for graphics integration
+- Develop for Desktop screens ( >= 1440 x 1080)
+- Make HTTP calls HTTP to backend using Fetch or Axios
+- Calls happen out of React components (through services)
+- Use JSDoc to comment code
+
+#### TECHNOLOGIES
+- HTML5/CSS3
+- Javascript
+- ESLinter/Prettier
+- React
+- Recharts
+
+
+***
+
+## INSTALLATION AND PREREQUISITES
 
 Build a user profile page in React, fetching data from a NodeJS external server.
 
